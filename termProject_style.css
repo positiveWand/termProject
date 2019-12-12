@@ -14,3 +14,8 @@ html, body, .mainDiv {
     margin-left: 10px;
     padding-left: 10px;
 }
+
+.contentBarImage {
+    width: 30px;
+    height: 30px;
+}
