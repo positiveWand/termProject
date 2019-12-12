@@ -8,6 +8,8 @@ html, body, .mainDiv {
 
 #controlTitle {
     text-align: center;
+    border-bottom-style: dashed;
+    border-width: 2px;
 }
 
 #tripList {
