@@ -20,7 +20,7 @@ html, body, .mainDiv {
 }
 
 #controlContent {
-    
+    overflow-y: auto;
 }
 #tripList {
     display: inline-block;
