@@ -7,11 +7,13 @@ html, body, .mainDiv {
     border-bottom-right-radius: 15px;
 }
 
+#controlHeader {
+    height: 30%;
+}
 #mainTitle {
     text-align: center;
     padding: 20px;
 }
-
 #controlTitle {
     text-align: center;
     border-top-style: dashed;
@@ -22,6 +24,7 @@ html, body, .mainDiv {
 #controlContent {
     overflow-y: auto;
     overflow-x: hidden;
+    height: 70%;
 }
 #tripList {
     display: inline-block;
