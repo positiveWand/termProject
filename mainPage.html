@@ -16,13 +16,14 @@
         <div class="row mainDiv">
             <div id="map" class="col-sm-8"></div>
             <div id="controlSidebar" class="col-sm-4">
+
                 <div id="controlHeader">
                     <h1 id="mainTitle">Travel with MAP</h1>
                     <h2 id="controlTitle">여행 List</h2>
                     <form action="" method="POST">
-                        정렬 :<select name="align">
-                            <option value="title">Volvo</option>
-                            <option value="date">Saab</option>
+                        정렬 : <select name="align">
+                            <option value="title">제목 순</option>
+                            <option value="date">시간 순</option>
                         </select>
                         <input type="button" value="정렬">
                         <br>
@@ -30,14 +31,18 @@
                         <input type="button" value="검색">
                     </form>
                 </div>
-                <ul>
-                    <li>
-                        <button>Trip 1</button>
-                    </li>
-                    <li>
-                        데이터2
-                    </li>
-                </ul>
+
+                <div id="controlContent">
+                    <ul id="tripList">
+                        <li>
+                            여행 1
+                            <a href="#"><img src="./source/slideshow.png" alt="되돌아보기 여행"></a>
+                        </li>
+                        <li>
+                            데이터2
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

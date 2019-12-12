@@ -1,3 +1,16 @@
 html, body, .mainDiv {
     height: 100%;
 }
+
+#mainTitle {
+    text-align: center;
+}
+
+#controlTitle {
+    text-align: center;
+}
+
+#tripList {
+    margin-left: 10px;
+    padding-left: 10px;
+}
