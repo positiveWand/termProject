@@ -20,7 +20,10 @@
                     <h1 id="mainTitle">Travel with MAP</h1>
                     <h2 id="controlTitle">여행 List</h2>
                     <form action="" method="POST">
-                        정렬 : <input type="text">
+                        정렬 :<select name="align">
+                            <option value="title">Volvo</option>
+                            <option value="date">Saab</option>
+                        </select>
                         <input type="button" value="정렬">
                         <br>
                         검색 : <input type="text">
@@ -28,8 +31,12 @@
                     </form>
                 </div>
                 <ul>
-                    <li>데이터1</li>
-                    <li>데이터2</li>
+                    <li>
+                        <button>Trip 1</button>
+                    </li>
+                    <li>
+                        데이터2
+                    </li>
                 </ul>
             </div>
         </div>
