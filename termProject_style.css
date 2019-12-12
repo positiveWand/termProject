@@ -4,20 +4,47 @@ html, body, .mainDiv {
 
 #mainTitle {
     text-align: center;
+    padding: 20px;
 }
 
 #controlTitle {
     text-align: center;
+    border-top-style: dashed;
     border-bottom-style: dashed;
     border-width: 2px;
 }
 
 #tripList {
-    margin-left: 10px;
+    display: inline-block;
+    list-style-type: none;
+    width: 100%;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+#tripList li{
+    display: inline-block;
+    list-style-position:inside;
+    margin: 0px 3px 3px 3px;
+    border: 1px solid black;
+    border-radius: 15px;
+
+    width: 100%;
+    height: 100px;
+}
+.contentBar h3{
+    padding-top: 35px;
+    padding-bottom: 35px;
     padding-left: 10px;
+    margin: 0px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .contentBarImage {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+}
+.imageWrapper {
+    float: right;
+    padding: 30px 10px 30px;
 }
