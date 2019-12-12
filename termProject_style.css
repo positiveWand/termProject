@@ -20,6 +20,10 @@ html, body, .mainDiv {
     border-bottom-style: dashed;
     border-width: 2px;
 }
+#addTripButton {
+    width: 100%;
+    height: 20px;
+}
 
 #controlContent {
     overflow-y: auto;
