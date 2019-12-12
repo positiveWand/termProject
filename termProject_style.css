@@ -21,6 +21,7 @@ html, body, .mainDiv {
 
 #controlContent {
     overflow-y: auto;
+    overflow-x: hidden;
 }
 #tripList {
     display: inline-block;
