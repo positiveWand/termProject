@@ -5,7 +5,7 @@ $(document).ready(function() {
         $("#selectAlign").attr("disabled", false);
         $("#alignButton").attr("disabled", false);
         $("#searchText").attr("disabled", false);
-        $("#serachTripButton").attr("disabled", false);
+        $("#searchTripButton").attr("disabled", false);
         $("#addTripButton").attr("disabled", false);
 
         $("#selectPositionMessage").hide();
@@ -27,7 +27,7 @@ $(document).ready(function() {
         $("#selectAlign").attr("disabled", true);
         $("#alignButton").attr("disabled", true);
         $("#searchText").attr("disabled", true);
-        $("#serachTripButton").attr("disabled", true);
+        $("#searchTripButton").attr("disabled", true);
         $("#addTripButton").attr("disabled", true);
     });
 
