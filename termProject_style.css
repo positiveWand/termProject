@@ -57,7 +57,7 @@ html, body, .mainDiv {
     vertical-align: middle;
 }
 #tripList li:hover {
-    border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
+    border-color: rgb(61, 138, 238);
     border-width: 3px;
     transition: 0.5s ease;
 }
