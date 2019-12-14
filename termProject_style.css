@@ -58,8 +58,8 @@ html, body, .mainDiv {
 }
 #tripList li:hover {
     border-color: rgb(61, 138, 238);
-    border-width: 3px;
-    transition: 0.5s ease;
+    border-width: 5px;
+    transition: 0.3s ease;
 }
 
 .contentBarImage {
