@@ -9,7 +9,7 @@ $(document).ready(function() {
         $("#addTripButton").attr("disabled", false);
 
         $("#selectPositionMessage").hide();
-        $("#tripList").show(800);
+        $("#tripList").show(700);
     });
 
     $("#addTripButton").on("click", function(){
@@ -21,7 +21,7 @@ $(document).ready(function() {
 
         //지도 초기 위치 설정 화면
         //content내용 전환
-        $("#tripList").hide(800);
+        $("#tripList").hide(700);
         $("#selectPositionMessage").show();
         //control버튼들 비활성화
         $("#selectAlign").attr("disabled", true);
