@@ -47,7 +47,7 @@ html, body, .mainDiv {
     width: 95%;
     height: 100px;
 }
-.contentBar h3{
+#tripList li h3{
     padding-top: 35px;
     padding-bottom: 35px;
     padding-left: 10px;
@@ -55,7 +55,7 @@ html, body, .mainDiv {
     display: inline-block;
     vertical-align: middle;
 }
-.contentBar:hover {
+#tripList li:hover {
     border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
     border-width: 3px;
     transition: 0.5s ease;
