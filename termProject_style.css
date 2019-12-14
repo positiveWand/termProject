@@ -37,7 +37,17 @@ html, body, .mainDiv {
     margin: 5px 10px 0 0;
     padding: 0;
 }
+#tripList li{
+    /*hello?*/
+    display: inline-block;
+    list-style-position:inside;
+    margin: 0px 3px 3px 3px;
+    border: 1px solid black;
+    border-radius: 15px;
 
+    width: 95%;
+    height: 100px;
+}
 #tripList li h3{
     padding-top: 35px;
     padding-bottom: 35px;
