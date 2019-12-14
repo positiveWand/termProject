@@ -56,7 +56,7 @@ html, body, .mainDiv {
     display: inline-block;
     vertical-align: middle;
 }
-li:hover {
+#tripList li:hover {
     border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
     border-width: 3px;
     transition: 0.5s ease;
