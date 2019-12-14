@@ -1,6 +1,11 @@
 $(document).ready(function() {
     $("#selectPositionMessage").hide();
-    
+
+    $("#addTripCancel").on("click", function() {
+        $("#selectPositionMessage").hide();
+        $("#tripList").show(800);
+    });
+
     $("#addTripButton").on("click", function(){
         /*
         <화면 전환>
@@ -19,4 +24,5 @@ $(document).ready(function() {
         $("#serachTripButton").attr("disabled", true);
         $("#addTripButton").attr("disabled", true);
     });
+
 });
