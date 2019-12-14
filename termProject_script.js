@@ -2,6 +2,12 @@ $(document).ready(function() {
     $("#selectPositionMessage").hide();
 
     $("#addTripCancel").on("click", function() {
+        $("#selectAlign").attr("disabled", false);
+        $("#alignButton").attr("disabled", false);
+        $("#searchText").attr("disabled", false);
+        $("#serachTripButton").attr("disabled", false);
+        $("#addTripButton").attr("disabled", false);
+
         $("#selectPositionMessage").hide();
         $("#tripList").show(800);
     });
