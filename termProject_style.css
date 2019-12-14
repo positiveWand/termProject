@@ -2,7 +2,7 @@ html, body, .mainDiv {
     height: 100%;
 }
 
-#map {
+#kakaoMap {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
@@ -54,6 +54,11 @@ html, body, .mainDiv {
     margin: 0px;
     display: inline-block;
     vertical-align: middle;
+}
+.contentBar:hover {
+    border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
+    border-width: 3px;
+    transition: 0.5s ease;
 }
 
 .contentBarImage {
