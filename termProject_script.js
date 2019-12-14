@@ -10,7 +10,7 @@ $(document).ready(function() {
 
         //지도 초기 위치 설정 화면
         //content내용 전환
-        $("#tripList").hide();
+        $("#tripList").hide(800);
         $("#selectPositionMessage").show();
         //control버튼들 비활성화
         $("#selectAlign").attr("disabled", true);
