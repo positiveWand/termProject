@@ -38,7 +38,7 @@ html, body, .mainDiv {
     padding: 0;
 }
 #tripList li{
-    /*hello?*/
+    user-select: none;
     display: inline-block;
     list-style-position:inside;
     margin: 0px 3px 3px 3px;
