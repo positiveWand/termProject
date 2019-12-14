@@ -2,19 +2,74 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Kakao 지도 TEST</title>
+    <title>[Term Project] Travel with MAP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./travelList_style.css">
+    <script src="./travelList_script.js"></script>
 </head>
 <body>
-    <div id="map" style="width:500px;height:400px;"></div>
+    <div class="container-fluid mainDiv">
+        <div class="row mainDiv">
+            <div id="kakaoMap" class="col-sm-8"></div>
+
+            <div id="controlSidebar" class="col-sm-4">
+
+                <div id="controlHeader">
+                    <h1 id="mainTitle">Travel with MAP</h1>
+                    <h2 id="controlTitle">여행 List</h2>
+                    <div id="travelListControl">
+                        <form action="" method="POST">
+                            정렬 : 
+                            <select name="align">
+                                <option value="title">제목 순</option>
+                                <option value="date">시간 순</option>
+                            </select>
+                            <input type="button" value="정렬" id="alignButton">
+                            <br>
+                            검색 : <input type="text">
+                            <input type="button" value="검색" id="searchTripButton">
+                            <br>
+                            <input type="button" value="여행 추가하기" id="addTripButton">
+                        </form>
+                    </div>
+                    <div id="oneTravelControl">
+                    </div>
+                </div>
+
+                <div id="controlContent">
+                    <div id="selectPositionMessage">
+                        <span>여행을 하는 위치를 알려주세요</span><br>
+                        <span>(옆의 지도를 움직여 여행하는 장소가 보이도록해주세요)</span><br>
+                        <button type="button" id="thisPlaceButton">여기입니다!!</button>
+                        <button type="button" id="addTripCancel">취소하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0de74bf537cd746093d6ca660b9b3a42"></script>
     <script>
-        var container = document.getElementById("map");
-        var options = {
-            center : new kakao.maps.LatLng(33.450701, 126.570667),
+        var container = document.getElementById("kakaoMap"); // 지도를 표시할 div
+        var options = { //지도의 초기설정값
+            center : new kakao.maps.LatLng(36.371800, 127.347759),
             level : 3
         };
 
-        var map = new kakao.maps.Map(container, options);
+        var map = new kakao.maps.Map(container, options); //지도 생성
+
+        //지도 위 컨트롤 올리기
+        //1. 지도 타입 컨트롤(일반 지도, 위성 지도)
+        var mapTypeControl = new kakao.maps.MapTypeControl(); //지도의 타입 컨트롤 생성
+        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT); //컨트롤 추가(왼쪽 위)
+        //2. 지도 확대/축소 컨트롤
+        var zoomControl = new kakao.maps.ZoomControl(); //지도의 확대/축소 컨트롤 생성
+        map.addControl(zoomControl, kakao.maps.ControlPosition.LEFT); //컨트롤 추가(왼쪽)
+
+
     </script>
 </body>
 </html>

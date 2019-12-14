@@ -70,3 +70,9 @@ html, body, .mainDiv {
     float: right;
     padding: 30px 10px 30px;
 }
+
+#selectPositionMessage {
+    text-align: center;
+    font-size: 20px;
+    color: rgb(33, 125, 245);
+}
