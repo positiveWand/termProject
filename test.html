@@ -24,13 +24,13 @@
                     <div id="travelListControl">
                         <form action="" method="POST">
                             정렬 : 
-                            <select name="align">
+                            <select name="align" id="selectAlign">
                                 <option value="title">제목 순</option>
                                 <option value="date">시간 순</option>
                             </select>
                             <input type="button" value="정렬" id="alignButton">
                             <br>
-                            검색 : <input type="text">
+                            검색 : <input type="text" id="searchText">
                             <input type="button" value="검색" id="searchTripButton">
                             <br>
                             <input type="button" value="여행 추가하기" id="addTripButton">
@@ -41,11 +41,32 @@
                 </div>
 
                 <div id="controlContent">
+                    <div id="tripListDiv">
+                        <div id="emptyListMessage">
+                            <span>저장된 여행이 없습니다.</span><br>
+                            <span>("여행 추가하기"를 클릭하여 여행을 추가해보세요!)</span>
+                        </div>
+                        <ul id="tripList">
+                            <li class="contentBar">
+                                <p><span class="peekTitle">여행 1</span> <span class="peekDate">기간 : 2019/01/11 ~ 2019/02/13</span></p>
+                                <a href="#" class="imageWrapper"><img src="./source/slideshow.png" alt="되돌아보기 여행" class="contentBarImage"></a>
+                            </li>
+                            <li class="contentBar">
+                                <p><span class="peekTitle">여행 2</span> <span class="peekDate">기간 : 2019/01/11 ~ 2019/02/13</span></p>
+                                <a href="#" class="imageWrapper"><img src="./source/slideshow.png" alt="되돌아보기 여행" class="contentBarImage"></a>
+                            </li>
+                            <li class="contentBar">
+                                <p><span class="peekTitle">여행 3</span> <span class="peekDate">기간 : 2019/01/11 ~ 2019/02/13</span></p>
+                                <a href="#" class="imageWrapper"><img src="./source/slideshow.png" alt="되돌아보기 여행" class="contentBarImage"></a>
+                            </li>
+                        </ul>
+                    </div>
+
                     <div id="selectPositionMessage">
                         <span>여행을 하는 위치를 알려주세요</span><br>
-                        <span>(옆의 지도를 움직여 여행하는 장소가 보이도록해주세요)</span><br>
+                        <span>(옆의 지도를 움직여 알맞는 장소를 보여주세요)</span><br>
                         <button type="button" id="thisPlaceButton">여기입니다!!</button>
-                        <button type="button" id="addTripCancel">취소하기</button>
+                        <button type="button" id="addTripCancel">추가 취소하기..</button>
                     </div>
                 </div>
             </div>

@@ -30,6 +30,11 @@ html, body, .mainDiv {
     overflow-x: hidden;
     height: 70%;
 }
+#emptyListMessage {
+    text-align: center;
+    font-size: 20px;
+    color: rgb(149, 97, 245);
+}
 #tripList {
     display: inline-block;
     list-style-type: none;
@@ -48,13 +53,25 @@ html, body, .mainDiv {
     width: 95%;
     height: 100px;
 }
-#tripList li h3{
-    padding-top: 35px;
-    padding-bottom: 35px;
+#tripList li p{
+    padding-top: 30px;
+    padding-bottom: 30px;
     padding-left: 10px;
     margin: 0px;
     display: inline-block;
     vertical-align: middle;
+}
+#tripList li span[class="peekTitle"] {
+    font-family: "Noto Sans",sans-serif;
+    height: 100%;
+    font-size: 28px;
+    font-weight: 550;
+
+    margin-right: 20px;
+}
+#tripList li span[class="peekDate"] {
+    font-size: 15px;
+    font-weight: 250;
 }
 #tripList li:hover {
     border-color: rgb(61, 138, 238);
