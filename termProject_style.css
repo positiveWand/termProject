@@ -9,10 +9,14 @@ html, body, .mainDiv {
 
 #controlHeader {
     height: 30%;
+    border-bottom-style: dashed;
 }
 #mainTitle {
     text-align: center;
     padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(94, 94, 243);
+    color: white;
 }
 #controlTitle {
     text-align: center;
