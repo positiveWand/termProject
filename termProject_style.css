@@ -82,9 +82,12 @@ html, body, .mainDiv {
     user-select: none;
     cursor: pointer;
     display: inline-block;
+    list-style-position:inside;
     background-color: rgb(61, 138, 238);
     margin: 0px 3px 3px 3px;
     border-radius: 15px;
+
+    border: 1px solid rgb(61, 138, 238);
 
     width: 95%;
     height: 100px;
@@ -110,6 +113,8 @@ html, body, .mainDiv {
     font-weight: 250;
 }
 #tripList li:hover {
+    border-color: rgb(43, 98, 170);
+    border-width: 5px;
     background-color: rgb(43, 98, 170);
     transition: 0.3s ease;
 }
@@ -138,8 +143,12 @@ html, body, .mainDiv {
 
     border-radius: 10px;
 
+    list-style-position:inside;
+
     background-color: rgb(116, 165, 230);
+    border: 1px solid rgb(61, 138, 238);
     color: white;
+    user-select: none;
     cursor: pointer;
     padding: 15px;
     width: 95%;
@@ -149,7 +158,9 @@ html, body, .mainDiv {
     transition: 0.3s ease;
 }
 .buttonActive, .accordion:hover {
-    background-color: rgb(74, 104, 143); 
+    background-color: rgb(74, 104, 143);
+    border-color: rgb(74, 104, 143);
+    border-width: 5px;
 }
 
 .toggleList {
