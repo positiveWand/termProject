@@ -74,6 +74,7 @@
     </div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0de74bf537cd746093d6ca660b9b3a42"></script>
     <script>
+        alert("확인");
         var container = document.getElementById("kakaoMap"); // 지도를 표시할 div
         var options = { //지도의 초기설정값
             center : new kakao.maps.LatLng(36.371800, 127.347759),
@@ -89,7 +90,6 @@
         //2. 지도 확대/축소 컨트롤
         var zoomControl = new kakao.maps.ZoomControl(); //지도의 확대/축소 컨트롤 생성
         map.addControl(zoomControl, kakao.maps.ControlPosition.LEFT); //컨트롤 추가(왼쪽)
-
 
     </script>
 </body>

@@ -1,11 +1,12 @@
 var receivedTripList = null; //서버로부터 전달받은 여행 "전체"
 var current_shownTripList = null; //현재 화면에 보여지고 있는 여행들
-
+alert("ㅎㅇ");
 var tripSelected = false;
 var selectedTripName = "";
 var selectedTripDatetime = "";
 
 $(document).ready(function() {
+    alert("dfdf");
     $("#emptyListMessage").hide();
     $("#selectPositionMessage").hide();
 
