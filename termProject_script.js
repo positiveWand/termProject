@@ -3,7 +3,6 @@ var screenMap;
 
 var receivedTripList = null; //서버로부터 전달받은 여행 "전체"
 var current_shownTripList = null; //현재 화면에 보여지고 있는 여행들
-alert("ㅎㅇ");
 var tripSelected = false;
 var selectedTripName = "";
 var selectedTripDatetime = "";
@@ -74,6 +73,17 @@ $(document).ready(function() {
         }
     });
 
+    $("#thisPlaceButton").on("click", function() {
+        //확인 메세지 출력
+        //만약 선택됐다면 다음 화면으로 넘어감
+        //컨트롤 화면 바뀜
+        var continueAdd = confirm("이 위치에서 여행을 시작할까요?");
+        if(continueAdd) {
+            var mapCenter = screenMap.getCenter();
+            var mapLevel = screenMap.getLevel();
+            console.log(mapCenter, mapLevel)
+        }
+    });
     $("#addTripCancel").on("click", function() {
         /*
         *<화면 전환>
@@ -96,7 +106,6 @@ $(document).ready(function() {
 });
 
 function readyMap() {
-    alert("확인");
     var container = document.getElementById("kakaoMap"); // 지도를 표시할 div
     var options = { //지도의 초기설정값
         center: new kakao.maps.LatLng(36.371800, 127.347759),
