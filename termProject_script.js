@@ -63,7 +63,6 @@ $(document).ready(function() {
     });
 
     $("#tripList li").on("click", function(event) {
-        alert("hello");
         $("#tripList li").css("background-color", "white");
         if($(this).find("span[class='peekTitle']").text() != selectedTripName) {
             $(this).css("background-color", "rgb(61, 138, 238)");
@@ -87,11 +86,8 @@ $(document).ready(function() {
         if(continueAdd) {
             addedTrip_map_center = screenMap.getCenter();
             addedTrip_map_level = screenMap.getLevel();
-            console.log(mapCenter, mapLevel);
 
-            $().text("~여행 중~");
-            $("#travelListControl").hide();
-            $("#oneTravelControl").show();
+            changeScreen_oneTrip();
 
         }
     });
