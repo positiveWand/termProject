@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0de74bf537cd746093d6ca660b9b3a42"></script>
 
     <link rel="stylesheet" type="text/css" href="./termProject_style.css">
     <script src="./termProject_script.js"></script>
@@ -72,25 +73,5 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0de74bf537cd746093d6ca660b9b3a42"></script>
-    <script>
-        alert("확인");
-        var container = document.getElementById("kakaoMap"); // 지도를 표시할 div
-        var options = { //지도의 초기설정값
-            center : new kakao.maps.LatLng(36.371800, 127.347759),
-            level : 3
-        };
-
-        var map = new kakao.maps.Map(container, options); //지도 생성
-
-        //지도 위 컨트롤 올리기
-        //1. 지도 타입 컨트롤(일반 지도, 위성 지도)
-        var mapTypeControl = new kakao.maps.MapTypeControl(); //지도의 타입 컨트롤 생성
-        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT); //컨트롤 추가(왼쪽 위)
-        //2. 지도 확대/축소 컨트롤
-        var zoomControl = new kakao.maps.ZoomControl(); //지도의 확대/축소 컨트롤 생성
-        map.addControl(zoomControl, kakao.maps.ControlPosition.LEFT); //컨트롤 추가(왼쪽)
-
-    </script>
 </body>
 </html>

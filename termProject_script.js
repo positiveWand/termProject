@@ -1,3 +1,6 @@
+
+var screenMap;
+
 var receivedTripList = null; //서버로부터 전달받은 여행 "전체"
 var current_shownTripList = null; //현재 화면에 보여지고 있는 여행들
 alert("ㅎㅇ");
@@ -6,7 +9,7 @@ var selectedTripName = "";
 var selectedTripDatetime = "";
 
 $(document).ready(function() {
-    alert("dfdf");
+    readyMap();
     $("#emptyListMessage").hide();
     $("#selectPositionMessage").hide();
 
@@ -91,3 +94,22 @@ $(document).ready(function() {
     });
 
 });
+
+function readyMap() {
+    alert("확인");
+    var container = document.getElementById("kakaoMap"); // 지도를 표시할 div
+    var options = { //지도의 초기설정값
+        center: new kakao.maps.LatLng(36.371800, 127.347759),
+        level: 3
+    };
+
+    var screenMap = new kakao.maps.Map(container, options); //지도 생성
+
+    //지도 위 컨트롤 올리기
+    //1. 지도 타입 컨트롤(일반 지도, 위성 지도)
+    var mapTypeControl = new kakao.maps.MapTypeControl(); //지도의 타입 컨트롤 생성
+    screenMap.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT); //컨트롤 추가(왼쪽 위)
+    //2. 지도 확대/축소 컨트롤
+    var zoomControl = new kakao.maps.ZoomControl(); //지도의 확대/축소 컨트롤 생성
+    screenMap.addControl(zoomControl, kakao.maps.ControlPosition.LEFT); //컨트롤 추가(왼쪽)
+}
