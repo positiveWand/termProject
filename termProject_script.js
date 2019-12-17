@@ -112,7 +112,7 @@ function readyMap() {
         level: 3
     };
 
-    var screenMap = new kakao.maps.Map(container, options); //지도 생성
+    screenMap = new kakao.maps.Map(container, options); //지도 생성
 
     //지도 위 컨트롤 올리기
     //1. 지도 타입 컨트롤(일반 지도, 위성 지도)
