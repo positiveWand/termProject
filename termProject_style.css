@@ -10,6 +10,7 @@ html, body, .mainDiv {
 #controlHeader {
     height: 30%;
     border-bottom-style: dashed;
+    margin-bottom: 10px;
 }
 #mainTitle {
     text-align: center;
@@ -23,6 +24,33 @@ html, body, .mainDiv {
     border-top-style: dashed;
     border-bottom-style: dashed;
     border-width: 2px;
+}
+#travelListControl {
+
+}
+#backToMain {
+    float: right;
+    font-size: 20px;
+}
+#oneTravelControl {
+}
+#oneTravelControl table, #oneTravelControl table th,  #oneTravelControl table td{
+    border: 2px solid black;
+}
+#oneTravelControl table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#oneTravelControl table th{
+    width: 20%;
+}
+#oneTravelControl table td{
+    
+}
+.editButton {
+    width: 10%;
 }
 #addTripButton {
     width: 100%;

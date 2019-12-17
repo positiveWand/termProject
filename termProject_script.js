@@ -1,6 +1,9 @@
 
 var screenMap;
 
+var addedTrip_map_center = [];
+var addedTrip_map_level = 0;
+
 var receivedTripList = null; //서버로부터 전달받은 여행 "전체"
 var current_shownTripList = null; //현재 화면에 보여지고 있는 여행들
 var tripSelected = false;
@@ -9,8 +12,11 @@ var selectedTripDatetime = "";
 
 $(document).ready(function() {
     readyMap();
+
     $("#emptyListMessage").hide();
     $("#selectPositionMessage").hide();
+    $("#oneTravelControl").hide();
+    $("#backToMain").hide();
 
     //서버로부터 여행목록 가져오기
 
@@ -57,7 +63,7 @@ $(document).ready(function() {
     });
 
     $("#tripList li").on("click", function(event) {
-        //alert("hello");
+        alert("hello");
         $("#tripList li").css("background-color", "white");
         if($(this).find("span[class='peekTitle']").text() != selectedTripName) {
             $(this).css("background-color", "rgb(61, 138, 238)");
@@ -79,9 +85,14 @@ $(document).ready(function() {
         //컨트롤 화면 바뀜
         var continueAdd = confirm("이 위치에서 여행을 시작할까요?");
         if(continueAdd) {
-            var mapCenter = screenMap.getCenter();
-            var mapLevel = screenMap.getLevel();
-            console.log(mapCenter, mapLevel)
+            addedTrip_map_center = screenMap.getCenter();
+            addedTrip_map_level = screenMap.getLevel();
+            console.log(mapCenter, mapLevel);
+
+            $().text("~여행 중~");
+            $("#travelListControl").hide();
+            $("#oneTravelControl").show();
+
         }
     });
     $("#addTripCancel").on("click", function() {
@@ -121,4 +132,23 @@ function readyMap() {
     //2. 지도 확대/축소 컨트롤
     var zoomControl = new kakao.maps.ZoomControl(); //지도의 확대/축소 컨트롤 생성
     screenMap.addControl(zoomControl, kakao.maps.ControlPosition.LEFT); //컨트롤 추가(왼쪽)
+}
+
+function changeScreen_oneTrip() {
+    $("#tripListDiv").hide();
+    $("#selectPositionMessage").hide();
+    $("#travelListControl").hide();
+
+    $("#controlTitle").text("~여행 중~");
+    $("#oneTravelControl").show();
+    $("#backToMain").show();
+}
+
+function changeScreen_mainPage() {
+    $("#oneTravelControl").hide();
+    $("#backToMain").hide();
+
+    $("#controlTitle").text("여행 List");
+    $("#tripListDiv").show();
+    $("#travelListControl").show();
 }
