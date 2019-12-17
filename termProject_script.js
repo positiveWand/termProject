@@ -19,7 +19,7 @@ $(document).ready(function() {
     $("#backToMain").hide();
 
     //서버로부터 여행목록 가져오기
-    $("#addTripCancel").on("click", function() {
+    $("#backToMain").on("click", function() {
         changeScreen_mainPage();
     });
     $("#alignButton").on("click", function() {
