@@ -17,7 +17,12 @@ $(document).ready(function() {
     $("#selectPositionMessage").hide();
     $("#oneTravelControl").hide();
 
+    $("#pointList").sortable();
+
     //서버로부터 여행목록 가져오기
+    $("#backToMainButton").on("click", function() {
+        changeScreen_mainPage();
+    });
     $("#alignButton").on("click", function() {
         /*
         -대상 : 전체 목록
@@ -59,11 +64,6 @@ $(document).ready(function() {
         $("#addTripButton").attr("disabled", true);
     });
 
-    $("#backToMainButton").on("click", function() {
-        changeScreen_mainPage();
-    });
-
-
     $("#tripList li").on("click", function(event) {
         $("#tripList li").css("background-color", "rgb(61, 138, 238)");
         if($(this).find("span[class='peekTitle']").text() != selectedTripName) {
@@ -80,16 +80,18 @@ $(document).ready(function() {
         }
     });
 
-
     $(".accordion").on("click", function() {
         $(this).next().toggle(700);
         if($(this).attr("class") == "accordion") {
             $(this).attr("class", "accordion buttonActive");
+            $("#pointList").sortable("disable");
         }
         else {
             $(this).attr("class", "accordion");
+            $("#pointList").sortable("enable");
         }
     });
+
 
     $("#thisPlaceButton").on("click", function() {
         //확인 메세지 출력
@@ -97,8 +99,8 @@ $(document).ready(function() {
         //컨트롤 화면 바뀜
         var continueAdd = confirm("이 위치에서 여행을 시작할까요?");
         if(continueAdd) {
-            addedTrip_map_center = screenMap.getCenter();
-            addedTrip_map_level = screenMap.getLevel();
+            //addedTrip_map_center = screenMap.getCenter();
+            //addedTrip_map_level = screenMap.getLevel();
 
             changeScreen_oneTrip();
 
@@ -128,21 +130,7 @@ $(document).ready(function() {
 });
 
 function readyMap() {
-    var container = document.getElementById("kakaoMap"); // 지도를 표시할 div
-    var options = { //지도의 초기설정값
-        center: new kakao.maps.LatLng(36.371800, 127.347759),
-        level: 3
-    };
 
-    screenMap = new kakao.maps.Map(container, options); //지도 생성
-
-    //지도 위 컨트롤 올리기
-    //1. 지도 타입 컨트롤(일반 지도, 위성 지도)
-    var mapTypeControl = new kakao.maps.MapTypeControl(); //지도의 타입 컨트롤 생성
-    screenMap.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT); //컨트롤 추가(왼쪽 위)
-    //2. 지도 확대/축소 컨트롤
-    var zoomControl = new kakao.maps.ZoomControl(); //지도의 확대/축소 컨트롤 생성
-    screenMap.addControl(zoomControl, kakao.maps.ControlPosition.LEFT); //컨트롤 추가(왼쪽)
 }
 
 function changeScreen_oneTrip() {

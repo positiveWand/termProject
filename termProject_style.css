@@ -29,7 +29,10 @@ html, body, .mainDiv {
 #travelListControl {
 
 }
-#backToMain {
+#repositionMapButton {
+    float: right;
+}
+#backToMainButton {
     float: right;
 }
 #oneTravelControl {
@@ -62,7 +65,7 @@ html, body, .mainDiv {
     overflow-x: hidden;
     height: 70%;
 }
-#emptyListMessage {
+.emptyListMessage {
     width: 100%;
     text-align: center;
     font-size: 20px;
@@ -77,10 +80,10 @@ html, body, .mainDiv {
 }
 #tripList li{
     user-select: none;
+    cursor: pointer;
     display: inline-block;
-    list-style-position:inside;
+    background-color: rgb(61, 138, 238);
     margin: 0px 3px 3px 3px;
-    border: 1px solid black;
     border-radius: 15px;
 
     width: 95%;
@@ -107,8 +110,7 @@ html, body, .mainDiv {
     font-weight: 250;
 }
 #tripList li:hover {
-    border-color: rgb(61, 138, 238);
-    border-width: 5px;
+    background-color: rgb(43, 98, 170);
     transition: 0.3s ease;
 }
 
@@ -120,6 +122,55 @@ html, body, .mainDiv {
     float: right;
     padding: 30px 10px 30px;
 }
+
+
+#pointList {
+    display: inline-block;
+    list-style-type: none;
+    width: 100%;
+    margin: 5px 10px 0 0;
+    padding: 0;
+}
+
+.accordion {
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+    border-radius: 10px;
+
+    background-color: rgb(116, 165, 230);
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    width: 95%;
+    text-align: left;
+    outline: none;
+    font-size: 25px;
+    transition: 0.3s ease;
+}
+.buttonActive, .accordion:hover {
+    background-color: rgb(74, 104, 143); 
+}
+
+.toggleList {
+    display: none;
+    list-style-type: none;
+    padding: 0 40px 0 0;
+    width: 95%;
+}
+.toggleList li {
+    cursor: pointer;
+    user-select: none;
+
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 15px;
+    border-radius: 10px;
+
+    height: 30px;
+    background-color: rgb(65, 203, 245);
+}
+
 
 #selectPositionMessage {
     width: 100%;

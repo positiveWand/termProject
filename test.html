@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <title>[Term Project] Travel with MAP</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+
     <link rel="stylesheet" type="text/css" href="./termProject_style.css">
-    <script src="./termProject_script.js"></script>
+    <script src="./test.js"></script>
 </head>
 <body>
     <div class="container-fluid mainDiv">
@@ -20,10 +22,26 @@
                 <div class="row">
                     <div class="col-sm-12" id="controlHeader">
                         <h1 id="mainTitle">Travel with MAP</h1>
-                        <h2 id="controlTitle">~여행 중~</h2>
+                        <h2 id="controlTitle">여행 List</h2>
+                        <div id="travelListControl">
+                            <form action="" method="POST">
+                                정렬 : 
+                                <select name="alignBy" id="selectAlign">
+                                    <option value="byTitle">제목 순</option>
+                                    <option value="byDate">시간 순</option>
+                                </select>
+                                <input type="button" value="정렬" id="alignButton">
+                                <br>
+                                검색 : <input type="text" id="searchText">
+                                <input type="button" value="검색" id="searchTripButton">
+                                <br>
+                                <input type="button" value="여행 추가하기" id="addTripButton">
+                            </form>
+                        </div>
                         <div id="oneTravelControl">
-                            여행 정보 :
-                            <button type="button" id="backToMain">취소</button>
+                            여행 정보 : 
+                            <button type="button" id="repositionMapButton">위치 재설정</button>
+                            <button type="button" id="backToMainButton">그만두기</button>
                             <form action="" method="POST">
                                 <table id="travelInfoList">
                                     <tr>
@@ -48,6 +66,10 @@
     
                     <div class="col-sm-12" id="controlContent">
                         <div id="tripListDiv">
+                            <div class="emptyListMessage">
+                                <span>저장된 여행이 없습니다.</span><br>
+                                <span>("여행 추가하기"를 클릭하여 여행을 추가해보세요!!)</span>
+                            </div>
                             <ul id="tripList">
                                 <li>
                                     <p><span class="peekTitle">여행 1</span> <span class="peekDate">기간 : 2019/01/11 ~ 2019/02/13</span></p>
@@ -63,9 +85,51 @@
                                 </li>
                             </ul>
                         </div>
+
+                        <div id="pointListDiv">
+                            <div class="emptyListMessage">
+                                <span>저장된 여행이 없습니다.</span><br>
+                                <span>("일정 추가하기"를 클릭하여 여행을 추가해보세요!!)</span>
+                            </div>
+                            <ul id="pointList">
+                                <li>
+                                    <div class="accordion">일정 1</div>
+                                    <ul class="toggleList">
+                                        <li>df</li>
+                                        <li>df</li>
+                                        <li class="addSidePoint">+ 추가하기</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="accordion">일정 2</div>
+                                    <ul class="toggleList">
+                                        <li>df</li>
+                                        <li>df</li>
+                                        <li class="addSidePoint">+ 추가하기</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="accordion">일정 3</div>
+                                    <ul class="toggleList">
+                                        <li>df</li>
+                                        <li>df</li>
+                                        <li>+ 추가하기</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+    
+                        <div id="selectPositionMessage">
+                            <span>여행을 하는 위치를 알려주세요</span><br>
+                            <span>(옆의 지도를 움직여 알맞는 장소를 보여주세요)</span><br>
+                            <button type="button" id="thisPlaceButton">여기입니다!!</button>
+                            <button type="button" id="addTripCancel">추가 취소하기..</button>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
     </div>
 </body>
