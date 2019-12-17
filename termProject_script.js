@@ -150,4 +150,11 @@ function changeScreen_mainPage() {
     $("#controlTitle").text("여행 List");
     $("#tripListDiv").show();
     $("#travelListControl").show();
+
+    //control버튼들 다시 활성화
+    $("#selectAlign").attr("disabled", false);
+    $("#alignButton").attr("disabled", false);
+    $("#searchText").attr("disabled", false);
+    $("#searchTripButton").attr("disabled", false);
+    $("#addTripButton").attr("disabled", false);
 }
