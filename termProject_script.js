@@ -19,7 +19,9 @@ $(document).ready(function() {
     $("#backToMain").hide();
 
     //서버로부터 여행목록 가져오기
-
+    $("#addTripCancel").on("click", function() {
+        changeScreen_mainPage();
+    });
     $("#alignButton").on("click", function() {
         /*
         -대상 : 전체 목록
@@ -42,7 +44,6 @@ $(document).ready(function() {
         -사용자가 입력한 검색어로 제목이 일치하는 여행을 찾아 제시한다
         */
     });
-
     $("#addTripButton").on("click", function(){
         /*
         *<화면 전환>
@@ -109,6 +110,8 @@ $(document).ready(function() {
         $("#selectPositionMessage").hide();
         $("#tripListDiv").show(700);
     });
+
+    
 
 });
 

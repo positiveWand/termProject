@@ -24,6 +24,7 @@ html, body, .mainDiv {
     border-top-style: dashed;
     border-bottom-style: dashed;
     border-width: 2px;
+    height: 100%;
 }
 #travelListControl {
 
