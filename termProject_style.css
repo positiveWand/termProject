@@ -47,7 +47,7 @@ html, body, .mainDiv {
     width: 20%;
 }
 #oneTravelControl table td{
-    
+
 }
 .editButton {
     width: 10%;
@@ -63,6 +63,7 @@ html, body, .mainDiv {
     height: 70%;
 }
 #emptyListMessage {
+    width: 100%;
     text-align: center;
     font-size: 20px;
     color: rgb(149, 97, 245);
@@ -121,6 +122,7 @@ html, body, .mainDiv {
 }
 
 #selectPositionMessage {
+    width: 100%;
     text-align: center;
     font-size: 20px;
     color: rgb(33, 125, 245);
