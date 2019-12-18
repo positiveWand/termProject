@@ -229,7 +229,7 @@ function readyMap() {
 function getTripList() {
     var items = [];
 
-    $.getJSON( "./all_trips_summary.json", function( data ) {
+    $.getJSON( "./data/all_trips_summary.json", function( data ) {
         allTripList = data;
       });
 }
