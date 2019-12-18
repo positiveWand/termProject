@@ -358,7 +358,8 @@ function changeScreen_oneTrip(aTripName) {
             $("#tripDescription").val(currentTravelingTrip["description"]);
 
             $.each(currentTravelingTrip["pointsOrder"], function(index, aPoint) {
-
+                var targetFileName = "./data/"+aTripName.trim()+"/"+aPoint;
+                
             });
         });
     }
