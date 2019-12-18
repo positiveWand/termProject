@@ -92,6 +92,16 @@ $(document).ready(function() {
         $("#addTripButton").attr("disabled", true);
     });
 
+    $("#addPointButton").on("click", function(){
+        //control 내용 전환
+        $("#oneTravelControl").hide();
+        $("#newPointControl").show();
+
+        $("#pointListDiv").hide();
+
+        //지도 상 (초록색)마커 표시(움직일 수 있게)
+    });
+
 
     $("#tripList li").on("click", function(event) {
         $("#tripList li").css("background-color", "rgb(61, 138, 238)");
