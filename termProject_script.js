@@ -20,6 +20,7 @@ $(document).ready(function() {
     readyMap();
 
     $(".emptyListMessage").hide();
+    $("#closeLookDiv").hide();
     $("#selectPositionMessage").hide();
     $("#oneTravelControl").hide();
     $("#newPointControl").hide();
@@ -35,6 +36,10 @@ $(document).ready(function() {
 
 
     attachDynamicEventListeners()
+
+    $("#closeLookDiv button").on("click", function() {
+        changeScreen_mainPage($(this).text());
+    });
 
     $("#saveTrip").on("click", function() {
         var valid = true;
@@ -85,7 +90,7 @@ $(document).ready(function() {
             $("#pointDescription").val("");
             $("#pointDate").val("");
             //화면 전환
-            changeScreen_oneTrip("");
+            changeScreen_oneTrip();
         }
     });
 
@@ -149,7 +154,7 @@ $(document).ready(function() {
             addedTrip_map_center = screenMap.getCenter();
             addedTrip_map_level = screenMap.getLevel();
 
-            changeScreen_oneTrip();
+            changeScreen_oneTrip("");
 
         }
     });

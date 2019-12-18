@@ -127,6 +127,13 @@ html, body, .mainDiv {
     font-size: 20px;
     color: rgb(149, 97, 245);
 }
+#closeLookDiv {
+    text-align: center;
+}
+#closeLookDiv button {
+    width: 50%;
+    height: 40px;
+}
 #tripList {
     display: inline-block;
     list-style-type: none;
