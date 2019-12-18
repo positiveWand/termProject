@@ -26,7 +26,9 @@ $(document).ready(function() {
     $("#pointList").sortable();
 
     //서버로부터 여행목록 가져오기
-    $.when(getTripList()).done(showTripList());
+    //getTripList();
+    //showTripList();
+    getAndShowTripList();
 
 
     $("#saveTrip").on("click", function() {
@@ -225,12 +227,10 @@ function readyMap() {
         
     });
 }
-
-function getTripList() {
-    var items = [];
-
+function getAndShowTripList() {
     $.getJSON( "./data/all_trips_summary.json", function( data ) {
         allTripList = data;
+        showTripList();
     });
 }
 
