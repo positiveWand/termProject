@@ -1,0 +1,9 @@
+{
+    "pointName" : "tripPoint_a",
+    "date" : "2019-12-24",
+    "description" : "시네마 파크 구경",
+    "pointLocation" : {
+        "lat" : 36.37004228330792,
+        "lng" : 127.34587409581681
+    }
+}

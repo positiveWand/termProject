@@ -331,7 +331,7 @@ function changeScreen_oneTrip(aTripName) {
             $("#tripEndDate").val(currentTravelingTrip["endDate"]);
             $("#tripDescription").val(currentTravelingTrip["description"]);
 
-            screenMap.setCenter(currentTravelingTrip["mapCenter"]["lat"], currentTravelingTrip["mapCenter"]["lng"]);
+            screenMap.setCenter(new kakao.maps.LatLng(currentTravelingTrip["mapCenter"]["lat"], currentTravelingTrip["mapCenter"]["lng"]));
             screenMap.setLevel(currentTravelingTrip["mapLevel"]);
 
             $.each(currentTravelingTrip["pointsOrder"], function(index, aPoint) {
