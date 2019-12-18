@@ -291,6 +291,7 @@ function attachDynamicEventListeners() {
         //지도를 중심좌표로 옮기고, 여행의 대표 마커들만 표시
         $("#tripList li").css("background-color", "rgb(61, 138, 238)");
         if($(this).find("span[class='peekTitle']").text() != selectedTripName) {
+            clearMap();
             $(this).css("background-color", "rgb(43, 98, 170)");
             tripSelected = true;
             selectedTripName = $(this).find("span[class='peekTitle']").text();
