@@ -191,6 +191,7 @@ function changeScreen_mainPage() {
     $("#oneTravelControl").hide();
     $("#pointListDiv").hide();
     $("#newPointControl").hide();
+    $("#selectPositionMessage").hide();
 
     $("#controlTitle").text("여행 List");
     $("#tripListDiv").show();
