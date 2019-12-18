@@ -136,7 +136,7 @@ $(document).ready(function() {
 
         //지도 상 (초록색)마커 표시(움직일 수 있게)
         var aLatlng = screenMap.getCenter();
-        currentNewPointMarker =  addMarker(aLatlng.getLat(), aLatlng.getLng(), "green", true);
+        currentNewPointMarker =  addMarker(aLatlng.getLat(), aLatlng.getLng(), "red", true);
         
     });
 
