@@ -114,7 +114,7 @@ $(document).ready(function() {
             makerPosition = new kakao.maps.LatLng(aLatlng.getLat(), aLatlng.getLng());
 
         var newPointMarker = new kakao.maps.Marker({
-            position : markerPosition,
+            position : makerPosition,
             image : markerImage
         });
         newPointMarker = currentNewPointMarker;
