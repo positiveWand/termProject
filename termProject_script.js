@@ -117,8 +117,7 @@ $(document).ready(function() {
             position : markerPosition,
             image : markerImage
         });
-        newPointMarker = currentNewPointMarker;
-        console.log(newPointMarker);
+        currentNewPointMarker = newPointMarker;
 
         newPointMarker.setMap(screenMap);
         newPointMarker.setDraggable(true);
