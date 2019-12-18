@@ -18,6 +18,7 @@ $(document).ready(function() {
     $("#oneTravelControl").hide();
     $("#newPointControl").hide();
 
+    $("#pointListDiv").hide();
     $("#pointList").sortable();
 
     //서버로부터 여행목록 가져오기
@@ -188,6 +189,8 @@ function changeScreen_oneTrip() {
 
 function changeScreen_mainPage() {
     $("#oneTravelControl").hide();
+    $("#pointListDiv").hide();
+    $("#newPointControl").hide();
 
     $("#controlTitle").text("여행 List");
     $("#tripListDiv").show();
