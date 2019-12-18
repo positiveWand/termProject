@@ -30,26 +30,24 @@
                         </div>
                         <div id="oneTravelControl">
                             여행 정보 : 
-                            <button type="button" id="saveTrip">저장하기</button>
                             <button type="button" id="repositionMapButton">위치 재설정</button>
+                            <button type="button" id="saveTrip">저장하기</button>
                             <form action="" method="POST">
-                                <table id="travelInfoList">
+                                <table id="travelInfoTable">
                                     <tr>
                                         <th>여행 명 :</th>
-                                        <td>travel1</td>
-                                        <td class="editButton"><button type="button" id="editTripName">편집</button></td>
+                                        <td><input class="noBorder fillWidth" type="text" id="tripName"></td>
                                     </tr>
                                     <tr>
                                         <th>여행 기간 :</th>
-                                        <td>dateStart ~ dateEnd</td>
-                                        <td class="editButton"><button type="button" id="editTripDate">편집</button></td>
+                                        <td><input  type="date" id="tripStartDate"> ~ <input type="date" id="tripEndDate"></td>
                                     </tr>
                                     <tr>
                                         <th>여행 요약 :</th>
-                                        <td>~~~~~~</td>
-                                        <td class="editButton"><button type="button" id="editTripDescription">편집</button></td>
+                                        <td><input class="noBorder fillWidth" type="textarea" id="tripDescription"></td>
                                     </tr>
                                 </table>
+                                <input type="button" value="일정 추가하기" id="addPointButton">
                             </form>
                         </div>
 
