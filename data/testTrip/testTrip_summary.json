@@ -1,0 +1,14 @@
+{
+    "title" : "testTrip",
+    "startDate" : "2019/12/24",
+    "endDate" : "2019/12/25",
+    "description" : "크리스마스 특별 여행",
+    "mapCenter" : {
+        "lat" : 36.371800,
+        "lng" : 127.347759
+    },
+    "pointsOrder" : [
+        "tripPoint_b",
+        "tripPoint_a"
+    ]
+}

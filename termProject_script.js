@@ -2,6 +2,7 @@
 var screenMap;
 
 var allTripList = null;
+var currentShownMarker = [];
 
 var addedTrip_map_center = [];
 var addedTrip_map_level = 0;
@@ -30,6 +31,9 @@ $(document).ready(function() {
     //showTripList();
     getAndShowTripList();
 
+
+
+    attachDynamicEventListeners()
 
     $("#saveTrip").on("click", function() {
         var valid = true;
@@ -80,7 +84,7 @@ $(document).ready(function() {
             $("#pointDescription").val("");
             $("#pointDate").val("");
             //화면 전환
-            changeScreen_oneTrip()
+            changeScreen_oneTrip("");
         }
     });
 
@@ -91,6 +95,8 @@ $(document).ready(function() {
         *-지도의 초기 위치(여행의 시작 위치)를 설정하도록함
         *-설정 후에 여행 편집 컨트롤로 넘어감
         */
+
+        clearMap();
 
         //지도 초기 위치 설정 화면
         //content내용 전환
@@ -132,35 +138,6 @@ $(document).ready(function() {
 
     });
 
-
-    $("#tripList li").on("click", function(event) {
-        $("#tripList li").css("background-color", "rgb(61, 138, 238)");
-        if($(this).find("span[class='peekTitle']").text() != selectedTripName) {
-            $(this).css("background-color", "rgb(43, 98, 170)");
-            tripSelected = true;
-            selectedTripName = $(this).find("span[class='peekTitle']").text();
-            //selectedTripDatetime = 
-            //showTrip(selectedTripName);
-        }
-        else {
-            tripSelected = false;
-            selectedTripName = "";
-            selectedTripDatetime = 0;
-        }
-    });
-
-
-    $(".accordion").on("click", function() {
-        $(this).next().toggle(700);
-        if($(this).attr("class") == "accordion") {
-            $(this).attr("class", "accordion accordionActive");
-            $("#pointList").sortable("disable");
-        }
-        else {
-            $(this).attr("class", "accordion");
-            $("#pointList").sortable("enable");
-        }
-    });
 
     $("#thisPlaceButton").on("click", function() {
         //확인 메세지 출력
@@ -231,6 +208,7 @@ function getAndShowTripList() {
     $.getJSON( "./data/all_trips_summary.json", function( data ) {
         allTripList = data;
         showTripList();
+        attachDynamicEventListeners()
     });
 }
 
@@ -259,10 +237,91 @@ function showTripList() {
 }
 
 function showPreviewMap(aTripName) {
+    var foundTrip = null;
+    var foundPoints = [];
+    //저장돼있던 정보 가저오기
+    $.each(allTripList, function(index, aTrip){
+        //리스트를 서치하여 원하는 Trip정보 가져오기
+        if(aTrip["title"] == aTripName) {
+            foundTrip = aTrip;
+            foundPoints = aTrip["mainPoints"];
+            return true;
+        }
+    });
+    //지도 중심 좌표 (부드럽게)옮기기
+    screenMap.panTo(new kakao.maps.LatLng(foundTrip["mapCenter"]["lat"], foundTrip["mapCenter"]["lng"]));
+    //지도 상에 (파란색)마커 표시
+    $.each(foundPoints, function(index, aMarkerLocation) {
+        var imageScr = "./source/marker_blue.png",
+            imageSize = new kakao.maps.Size(40, 40),
+            imageOption = {offset : new kakao.maps.Point(20, 50)};
+        
+        var aLatlng = screenMap.getCenter();
 
+        var markerImage = new kakao.maps.MarkerImage(imageScr, imageSize, imageOption),
+            markerPosition = new kakao.maps.LatLng(aMarkerLocation.lat, aMarkerLocation.lng);
+
+        var newPointMarker = new kakao.maps.Marker({
+            position : markerPosition,
+            image : markerImage
+        });
+
+        newPointMarker.setMap(screenMap);
+        newPointMarker.setDraggable(false);
+
+        currentShownMarker.push(newPointMarker);
+    });
 }
 
-function changeScreen_oneTrip() {
+function clearMap() {
+    $.each(currentShownMarker, function(index, aMarker) {
+        //모든 마커 삭제(지도에서부터)
+        aMarker.setMap(null);
+    });
+    currentShownMarker = []; //초기화
+}
+
+function attachDynamicEventListeners() {
+    $("#tripList li").on("click", function(event) {
+        //여행 bar 클릭 시 일어나는 이벤트
+        //선택됐다는 표시(css 전환)
+        //지도를 중심좌표로 옮기고, 여행의 대표 마커들만 표시
+        $("#tripList li").css("background-color", "rgb(61, 138, 238)");
+        if($(this).find("span[class='peekTitle']").text() != selectedTripName) {
+            $(this).css("background-color", "rgb(43, 98, 170)");
+            tripSelected = true;
+            selectedTripName = $(this).find("span[class='peekTitle']").text();
+            showPreviewMap(selectedTripName);
+        }
+        else {
+            tripSelected = false;
+            selectedTripName = "";
+            clearMap();
+        }
+    });
+
+    $("#tripList li").on("dbclick", function(event) {
+        //여행 세부 정보로 이동
+        //맵 초기화
+        clearMap();
+        //세부 화면으로 전환
+    });
+
+
+    $(".accordion").on("click", function() {
+        $(this).next().toggle(700);
+        if($(this).attr("class") == "accordion") {
+            $(this).attr("class", "accordion accordionActive");
+            $("#pointList").sortable("disable");
+        }
+        else {
+            $(this).attr("class", "accordion");
+            $("#pointList").sortable("enable");
+        }
+    });
+}
+
+function changeScreen_oneTrip(aTripName) {
     $("#tripListDiv").hide();
     $("#selectPositionMessage").hide();
     $("#travelListControl").hide();
@@ -271,6 +330,14 @@ function changeScreen_oneTrip() {
     $("#controlTitle").text("~여행 중~");
     $("#oneTravelControl").show();
     $("#pointListDiv").show();
+
+    if(aTripName == "") { //새로운 여행을 등록하는 경우
+        //아무것도 하지 않는다
+    }
+    else { //기존의 여행을 조회하는 경우
+        //기존의 정보들을 가져와 출력한다
+        //여행 이름, 여행 기간, 여행 요약, 지도 초기위치, 마커, 일정들에 대한 정보
+    }
 }
 
 function changeScreen_mainPage() {
