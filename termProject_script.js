@@ -95,7 +95,7 @@ $(document).ready(function() {
             $.ajax({
                 url: "./savePoint.php",
                 type: "post",
-                data: $("#pointInfoForm").serialize()+"&pointName="+currentTravelingTrip["title"]+"&lat="+newPointPosition.getLat()+"&lng="+newPointPosition.getLng()
+                data: $("#pointInfoForm").serialize()+"&tripName="+currentTravelingTrip["title"]+"&lat="+newPointPosition.getLat()+"&lng="+newPointPosition.getLng()
             }).done(function(data) {
                 console.log("save "+data);
             });
@@ -106,7 +106,7 @@ $(document).ready(function() {
             $("#pointDescription").val("");
             $("#pointDate").val("");
             //화면 전환
-            changeScreen_oneTrip();
+            changeScreen_oneTrip(currentTravelingTrip["title"]);
         }
     });
 
