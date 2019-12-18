@@ -314,6 +314,8 @@ function attachDynamicEventListeners() {
         }, delay);
     })
     .on("dbclick", function(event) {
+        clearTimeout(timer);
+        prevent = true;
         //여행 세부 정보로 이동
         //맵 초기화
         clearMap();
