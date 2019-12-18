@@ -236,7 +236,7 @@ function getAndShowTripList() {
 
 function showTripList() {
     var items = [];
-    $.each( allTripList, function(aTrip) {
+    $.each( allTripList, function(index, aTrip) {
         var anItem = "<li>";
         $.each( aTrip, function(key, val) {
             if(key == "title") {
