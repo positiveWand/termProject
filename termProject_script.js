@@ -4,6 +4,8 @@ var screenMap;
 var addedTrip_map_center = [];
 var addedTrip_map_level = 0;
 
+var currentNewPointMarker = null;
+
 var receivedTripList = null; //서버로부터 전달받은 여행 "전체"
 var current_shownTripList = null; //현재 화면에 보여지고 있는 여행들
 var tripSelected = false;
@@ -63,6 +65,8 @@ $(document).ready(function() {
         if(valid && confirm("저장하시겠습니까?")) {
             //일정 이름, 기간, 요약 저장
             //(초록색)마커 위치 저장
+            var newPointPosition = currentNewPointMarker.getPosition();
+            console.log(newPointPosition)
             //입력 필드 초기화
             $("#pointName").val("");
             $("#pointDescription").val("");
@@ -100,6 +104,23 @@ $(document).ready(function() {
         $("#pointListDiv").hide();
 
         //지도 상 (초록색)마커 표시(움직일 수 있게)
+        var greenMarkerImage = "./source/marker_green.png",
+            imageSize = new kakao.maps.Size(50, 50),
+            var aLatlng = screenMap.getCenter();
+            imageOption - {offset : new kakao.maps.Point(25, 50)};
+
+        var markerImage = new kakao.maps.MarkerImage(imageScr, imageSize, imageOption),
+            makerPosition = new kakao.maps.LatLng(aLatlng.getLat(), aLatlng.getLng());
+
+        var newPointMarker = new kakao.maps.Marker({
+            position : markerPosition,
+            image : markerImage
+        });
+        newPointMarker = currentNewPointMarker;
+
+        newPointMarker.setMap(screenMap);
+        newPointMarker.setDraggable(true);
+
     });
 
 
