@@ -273,6 +273,7 @@ function showPreviewMap(aTripName) {
 
         currentShownMarker.push(newPointMarker);
     });
+    //마커들 이어주기
 }
 
 function clearMap() {
