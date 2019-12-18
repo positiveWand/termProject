@@ -1,8 +1,8 @@
 [
     {
         "title" : "testTrip1",
-        "startDate" : "2019/12/24",
-        "endDate" : "2019/12/25",
+        "startDate" : "2019-12-24",
+        "endDate" : "2019-12-25",
         "mapCenter" : {
             "lat" :36.370016538007356,
             "lng" : 127.34542825522155
@@ -17,8 +17,8 @@
     },
     {
         "title" : "testTrip2",
-        "startDate" : "2019/11/24",
-        "endDate" : "2019/11/25",
+        "startDate" : "2019-11-24",
+        "endDate" : "2019-11-25",
         "mapCenter" : {
             "lat" :36.370016538007356,
             "lng" : 127.34542825522155
@@ -37,8 +37,8 @@
     }
     ,{
         "title" : "testTrip3",
-        "startDate" : "2019/10/24",
-        "endDate" : "2019/10/25",
+        "startDate" : "2019-10-24",
+        "endDate" : "2019-10-25",
         "mapCenter" : {
             "lat" :36.370016538007356,
             "lng" : 127.34542825522155
