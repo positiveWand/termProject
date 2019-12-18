@@ -122,6 +122,16 @@ $(document).ready(function() {
         newPointMarker.setMap(screenMap);
         newPointMarker.setDraggable(true);
 
+        var markerPosition  = new kakao.maps.LatLng(aLatlng.getLat(), aLatlng.getLng()); 
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(screenMap);
+
     });
 
 
