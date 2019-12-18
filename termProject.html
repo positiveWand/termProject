@@ -24,22 +24,12 @@
                         <h2 id="controlTitle">여행 List</h2>
                         <div id="travelListControl">
                             <form action="" method="POST">
-                                정렬 : 
-                                <select name="alignBy" id="selectAlign">
-                                    <option value="byTitle">제목 순</option>
-                                    <option value="byDate">시간 순</option>
-                                </select>
-                                <input type="button" value="정렬" id="alignButton">
-                                <br>
-                                검색 : <input type="text" id="searchText">
-                                <input type="button" value="검색" id="searchTripButton">
-                                <br>
                                 <input type="button" value="여행 추가하기" id="addTripButton">
                             </form>
                         </div>
                         <div id="oneTravelControl">
                             여행 정보 : 
-                            <button type="button" id="backToMainButton">그만두기</button>
+                            <button type="button" id="saveTrip">저장하기</button>
                             <button type="button" id="repositionMapButton">위치 재설정</button>
                             <form action="" method="POST">
                                 <table id="travelInfoList">
@@ -61,6 +51,32 @@
                                 </table>
                             </form>
                         </div>
+
+                        <div id="newPointControl">
+                            일정 정보 :
+                            <button type="button" id="savePoint">저장하기</button>
+                            <form action="" method="POST">
+                                <table id="pointInfoTable">
+                                    <tr>
+                                        <th>일정 명 :</th>
+                                        <td><input class="noBorder fillWidth" type="text" id="pointName"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>일정 날짜 :</th>
+                                        <td><input  type="date" id="pointDate"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>일정 요약 :</th>
+                                        <td><input class="noBorder fillWidth" type="textarea" id="pointDescription"></td>
+                                    </tr>
+                                </table>
+                            </form>
+                            <div>
+                                옆 지도의 "<span>초록색</span>" 마커를 이용해 장소를 지정해주세요.
+                            </div>
+                        </div>
+
+                        
                     </div>
     
                     <div class="col-sm-12" id="controlContent">
@@ -69,7 +85,7 @@
                                 <span>저장된 여행이 없습니다.</span><br>
                                 <span>("여행 추가하기"를 클릭하여 여행을 추가해보세요!!)</span>
                             </div>
-                            <ol id="tripList">
+                            <ul id="tripList">
                                 <li>
                                     <p><span class="peekTitle">여행 1</span> <span class="peekDate">기간 : 2019/01/11 ~ 2019/02/13</span></p>
                                     <a href="#" class="imageWrapper"><img src="./source/slideshow.png" alt="되돌아보기 여행" class="contentBarImage"></a>
@@ -82,8 +98,40 @@
                                     <p><span class="peekTitle">여행 3</span> <span class="peekDate">기간 : 2019/01/11 ~ 2019/02/13</span></p>
                                     <a href="#" class="imageWrapper"><img src="./source/slideshow.png" alt="되돌아보기 여행" class="contentBarImage"></a>
                                 </li>
-                            </ol>
+                            </ul>
                         </div>
+
+                        <div id="pointListDiv">
+                            <div class="emptyListMessage">
+                                <span>저장된  일정이 없습니다.</span><br>
+                                <span>("일정 추가하기"를 클릭하여 일정을 추가해보세요!!)</span>
+                            </div>
+                            <ul id="pointList">
+                                <li>
+                                    <div class="accordion">일정 1</div>
+                                    <ul class="toggleList">
+                                        <li>df</li>
+                                        <li>df</li>
+                                        <li class="addSidePoint">+ 추가하기</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="accordion">일정 2</div>
+                                    <ul class="toggleList">
+                                        <li>df</li>
+                                        <li>df</li>
+                                        <li class="addSidePoint">+ 추가하기</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="accordion">일정 3</div>
+                                    <ul class="toggleList">
+                                        <li>df</li>
+                                        <li>df</li>
+                                        <li>+ 추가하기</li>
+                                    </ul>
+                                </li>
+                            </ul>
     
                         <div id="selectPositionMessage">
                             <span>여행을 하는 위치를 알려주세요</span><br>

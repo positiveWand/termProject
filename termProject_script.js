@@ -16,30 +16,62 @@ $(document).ready(function() {
     $(".emptyListMessage").hide();
     $("#selectPositionMessage").hide();
     $("#oneTravelControl").hide();
+    $("#newPointControl").hide();
+
+    $("#pointList").sortable();
 
     //서버로부터 여행목록 가져오기
-    $("#alignButton").on("click", function() {
-        /*
-        -대상 : 전체 목록
-        -사용자가 설정한 방식대로 전체 리스트를 정렬한다
-        1) 제목 순 : 여행의 "제목"을 기준으로 정렬
-        2) 날짜 순 : 여행의 "시간(Datetime)"을 기준으로 정렬
-        */
-        var alignType = $("selectAlign").val();
 
-        if(alignType == "byTitle") {
 
+    $("#saveTrip").on("click", function() {
+        var valid = true;
+        //여행 이름, 기간, 요약 validate
+        if($("#tripName").val().trim() == "" || $("#tripDescription").val().trim() == "") {
+            alert("제목과 요약을 채워주세요.");
+            valid = false;
         }
-        else if(alignType == "byDate") {
-
+        if($("#tripStartDate").val() == "" || $("#tripEndDate").val() == "" || new Date($("#tripEndDate").val()) < new Date($("#tripStartDate").val())) {
+            alert("기간을 알맞게 설정해주세요");
+            valid = false;
+        }
+        if(valid && confirm("저장하시겠습니까?")) {
+            //여행 이름, 기간, 요약 저장
+            //일정들 순서 반영
+            //입력 필드 초기화
+            $("#tripName").val("");
+            $("#tripDescription").val("");
+            $("#tripStartDate").val("");
+            $("#tripEndDate").val("");
+            //화면 전환
+            changeScreen_mainPage();
         }
     });
-    $("#searchTripButton").on("click", function() {
-        /*
-        -대상 : 전체 목록
-        -사용자가 입력한 검색어로 제목이 일치하는 여행을 찾아 제시한다
-        */
+
+    $("#savePoint").on("click", function() {
+        var valid = true;
+        //일정 이름, 날짜, 요약 validate
+        if($("#pointName").val().trim() == "" || $("#pointDescription").val().trim() == "") {
+            alert("제목과 요약을 채워주세요.");
+            valid = false;
+        }
+        if($("#pointDate").val() == "") {
+            alert("기간을 알맞게 설정해주세요");
+            valid = false;
+        }
+
+        if(valid && confirm("저장하시겠습니까?")) {
+            //일정 이름, 기간, 요약 저장
+            //(초록색)마커 위치 저장
+            //입력 필드 초기화
+            $("#pointName").val("");
+            $("#pointDescription").val("");
+            $("#pointDate").val("");
+            //화면 전환
+            changeScreen_oneTrip()
+        }
     });
+
+
     $("#addTripButton").on("click", function(){
         /*
         *<화면 전환>
@@ -57,10 +89,6 @@ $(document).ready(function() {
         $("#searchText").attr("disabled", true);
         $("#searchTripButton").attr("disabled", true);
         $("#addTripButton").attr("disabled", true);
-    });
-
-    $("#backToMainButton").on("click", function() {
-        changeScreen_mainPage();
     });
 
 
@@ -84,10 +112,12 @@ $(document).ready(function() {
     $(".accordion").on("click", function() {
         $(this).next().toggle(700);
         if($(this).attr("class") == "accordion") {
-            $(this).attr("class", "accordion buttonActive");
+            $(this).attr("class", "accordion accordionActive");
+            $("#pointList").sortable("disable");
         }
         else {
             $(this).attr("class", "accordion");
+            $("#pointList").sortable("enable");
         }
     });
 
@@ -149,9 +179,11 @@ function changeScreen_oneTrip() {
     $("#tripListDiv").hide();
     $("#selectPositionMessage").hide();
     $("#travelListControl").hide();
+    $("#newPointControl").hide();
 
     $("#controlTitle").text("~여행 중~");
     $("#oneTravelControl").show();
+    $("#pointListDiv").show();
 }
 
 function changeScreen_mainPage() {
