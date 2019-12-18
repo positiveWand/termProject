@@ -1,6 +1,8 @@
 
 var screenMap;
 
+var allTripList = null;
+
 var addedTrip_map_center = [];
 var addedTrip_map_level = 0;
 
@@ -24,6 +26,7 @@ $(document).ready(function() {
     $("#pointList").sortable();
 
     //서버로부터 여행목록 가져오기
+    getTripList();
 
 
     $("#saveTrip").on("click", function() {
@@ -65,8 +68,11 @@ $(document).ready(function() {
         if(valid && confirm("저장하시겠습니까?")) {
             //일정 이름, 기간, 요약 저장
             //(초록색)마커 위치 저장
-            var newPointPosition = currentNewPointMarker.getPosition();
-            console.log(newPointPosition)
+            var newPointPosition = currentNewPointMarker.getPosition(); //마커 현재 위치
+            currentNewPointMarker.setMap(null); //마커 삭제
+            console.log(newPointPosition);
+
+
             //입력 필드 초기화
             $("#pointName").val("");
             $("#pointDescription").val("");
@@ -121,16 +127,6 @@ $(document).ready(function() {
 
         newPointMarker.setMap(screenMap);
         newPointMarker.setDraggable(true);
-
-        var markerPosition  = new kakao.maps.LatLng(aLatlng.getLat(), aLatlng.getLng()); 
-
-        // 마커를 생성합니다
-        var marker = new kakao.maps.Marker({
-            position: markerPosition
-        });
-
-        // 마커가 지도 위에 표시되도록 설정합니다
-        marker.setMap(screenMap);
 
     });
 
@@ -228,6 +224,42 @@ function readyMap() {
         console.log(latlng)
         
     });
+}
+
+function getTripList() {
+    var items = [];
+
+    $.getJSON( "./all_trips_summary.json", function( data ) {
+        allTripList = data;
+      });
+}
+
+function showTripList() {
+    var items = [];
+    $.each( allTripList, function(aTrip) {
+        var anItem = "<li>";
+        $.each( aTrip, function(key, val) {
+            if(key == "title") {
+                anItem += "<p><span class=\"peekTitle\">" + val + "</span> <span class=\"peekDate\">";
+            }
+            else if(key == "startDate") {
+                anItem += "기간 :" + val + " ~ ";
+            }
+            else if(key == "endDate") {
+                anItem += val + "</span></p>";
+            }
+        });
+        anItem += "<a href=\"#\" class=\"imageWrapper\"><img src=\"./source/slideshow.png\" alt=\"되돌아보기 여행\" class=\"contentBarImage\"></a>";
+        anItem += "</li>"
+
+        items.push(anItem);
+    });
+
+    $("#tripList").append(items.join(""));
+}
+
+function showPreviewMap(aTripName) {
+
 }
 
 function changeScreen_oneTrip() {
