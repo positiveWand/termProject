@@ -104,10 +104,11 @@ $(document).ready(function() {
         $("#pointListDiv").hide();
 
         //지도 상 (초록색)마커 표시(움직일 수 있게)
-        var greenMarkerImage = "./source/marker_green.png",
+        var imageScr = "./source/marker_green.png",
             imageSize = new kakao.maps.Size(50, 50),
-            var aLatlng = screenMap.getCenter();
-            imageOption - {offset : new kakao.maps.Point(25, 50)};
+            imageOption = {offset : new kakao.maps.Point(25, 50)};
+        
+        var aLatlng = screenMap.getCenter();
 
         var markerImage = new kakao.maps.MarkerImage(imageScr, imageSize, imageOption),
             makerPosition = new kakao.maps.LatLng(aLatlng.getLat(), aLatlng.getLng());
