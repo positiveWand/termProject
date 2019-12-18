@@ -86,18 +86,19 @@ $(document).ready(function() {
         }
 
         if(valid && confirm("저장하시겠습니까?")) {
+            //(빨간색)마커 위치 저장
+            var newPointPosition = currentNewPointMarker.getPosition(); //마커 현재 위치
+            currentNewPointMarker.setMap(null); //마커 삭제
+            console.log(newPointPosition);
+
             //일정 이름, 기간, 요약 저장
             $.ajax({
                 url: "./savePoint.php",
                 type: "post",
-                data: "targetJson="+JSON.stringify(aCalandar),
+                data: $("#pointInfoForm").serialize()+"&pointName="+currentTravelingTrip["title"]+"&lat="+newPointPosition.getLat()+"&lng="+newPointPosition.getLng()
             }).done(function(data) {
                 console.log("save "+data);
             });
-            //(초록색)마커 위치 저장
-            var newPointPosition = currentNewPointMarker.getPosition(); //마커 현재 위치
-            currentNewPointMarker.setMap(null); //마커 삭제
-            console.log(newPointPosition);
 
 
             //입력 필드 초기화
