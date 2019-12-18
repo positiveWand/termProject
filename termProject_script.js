@@ -105,8 +105,8 @@ $(document).ready(function() {
 
         //지도 상 (초록색)마커 표시(움직일 수 있게)
         var imageScr = "./source/marker_green.png",
-            imageSize = new kakao.maps.Size(50, 50),
-            imageOption = {offset : new kakao.maps.Point(25, 50)};
+            imageSize = new kakao.maps.Size(40, 40),
+            imageOption = {offset : new kakao.maps.Point(20, 50)};
         
         var aLatlng = screenMap.getCenter();
 
@@ -206,6 +206,18 @@ function readyMap() {
     //2. 지도 확대/축소 컨트롤
     var zoomControl = new kakao.maps.ZoomControl(); //지도의 확대/축소 컨트롤 생성
     screenMap.addControl(zoomControl, kakao.maps.ControlPosition.LEFT); //컨트롤 추가(왼쪽)
+
+
+    kakao.maps.event.addListener(screenMap, 'click', function(mouseEvent) {        
+    
+        // 클릭한 위도, 경도 정보를 가져옵니다 
+        var latlng = mouseEvent.latLng; 
+        
+        // 마커 위치를 클릭한 위치로 옮깁니
+        
+        console.log(latlng)
+        
+    });
 }
 
 function changeScreen_oneTrip() {
