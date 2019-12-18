@@ -37,25 +37,29 @@ html, body, .mainDiv {
 }
 #oneTravelControl {
 }
-#oneTravelControl table, #oneTravelControl table th,  #oneTravelControl table td{
-    border: 2px solid black;
-}
 #oneTravelControl table {
     border-collapse: collapse;
-    border-bottom: 10px;
-    overflow: hidden;
+    border-radius: 10px;
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 #oneTravelControl table th{
     background-color: rgb(94, 94, 243);
+    border-bottom: 2px solid white;
     color: white;
     width: 20%;
 }
-#oneTravelControl table td{
-
+#oneTravelControl table tr:first-child th:first-child {
+    border-top-left-radius: 10px;
 }
+#oneTravelControl table tr:last-child th:first-child {
+    border-bottom-left-radius: 10px;
+}
+#oneTravelControl table td{
+    border: 2px solid black;
+}
+
 
 #savePoint {
     float: right;

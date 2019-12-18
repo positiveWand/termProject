@@ -2,6 +2,7 @@
 var screenMap;
 
 var allTripList = null;
+var currentTravelingTrip = null;
 var currentShownMarker = [];
 
 
@@ -242,6 +243,7 @@ function showTripList() {
     $("#tripList").append(items.join(""));
 }
 
+
 function showPreviewMap(aTripName) {
     clearMap();
     var foundTrip = null;
@@ -280,7 +282,7 @@ function showPreviewMap(aTripName) {
 
         currentShownMarker.push(newPointMarker);
     });
-    //마커들 이어주기
+    //마커들 이어주기(선택)
 }
 
 function clearMap() {
@@ -291,7 +293,14 @@ function clearMap() {
     currentShownMarker = []; //초기화
 }
 
+function showMap() {
+
+}
+
 function attachDynamicEventListeners() {
+    $("#tripList li").off("click");
+    $(".accordion").off("click");
+
     $("#tripList li").on("click", function(event) {
         $("#tripList li").css("background-color", "rgb(61, 138, 238)");
         if ($(this).find("span[class='peekTitle']").text() != selectedTripName) {
@@ -325,6 +334,7 @@ function attachDynamicEventListeners() {
 }
 
 function changeScreen_oneTrip(aTripName) {
+    clearMap();
     $("#tripListDiv").hide();
     $("#selectPositionMessage").hide();
     $("#travelListControl").hide();
@@ -340,6 +350,17 @@ function changeScreen_oneTrip(aTripName) {
     else { //기존의 여행을 조회하는 경우
         //기존의 정보들을 가져와 출력한다
         //여행 이름, 여행 기간, 여행 요약, 지도 초기위치, 마커, 일정들에 대한 정보
+        $.getJSON( "./data/"+aTripName.trim()+"/"+aTripName.trim()+"_summary.json", function( data ) {
+            currentTravelingTrip = data;
+            $("#tripName").val(currentTravelingTrip["title"]);
+            $("#tripStartDate").val(currentTravelingTrip["startDate"]);
+            $("#tripEndDate").val(currentTravelingTrip["endDate"]);
+            $("#tripDescription").val(currentTravelingTrip["description"]);
+
+            $.each(currentTravelingTrip["pointsOrder"], function(index, aPoint) {
+                
+            });
+        });
     }
 }
 
