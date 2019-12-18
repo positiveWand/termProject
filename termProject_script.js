@@ -111,13 +111,14 @@ $(document).ready(function() {
         var aLatlng = screenMap.getCenter();
 
         var markerImage = new kakao.maps.MarkerImage(imageScr, imageSize, imageOption),
-            makerPosition = new kakao.maps.LatLng(aLatlng.getLat(), aLatlng.getLng());
+            markerPosition = new kakao.maps.LatLng(aLatlng.getLat(), aLatlng.getLng());
 
         var newPointMarker = new kakao.maps.Marker({
-            position : makerPosition,
+            position : markerPosition,
             image : markerImage
         });
         newPointMarker = currentNewPointMarker;
+        console.log(newPointMarker);
 
         newPointMarker.setMap(screenMap);
         newPointMarker.setDraggable(true);
