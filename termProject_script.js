@@ -298,11 +298,14 @@ function attachDynamicEventListeners() {
             $(this).css("background-color", "rgb(43, 98, 170)");
             tripSelected = true;
             selectedTripName = $(this).find("span[class='peekTitle']").text();
+
+            $("#closeLookDiv").show(700);
             showPreviewMap(selectedTripName);
         }
         else {
             tripSelected = false;
             selectedTripName = "";
+            $("#closeLookDiv").hide(700);
             clearMap();
         }
     })
