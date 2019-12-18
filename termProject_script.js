@@ -26,8 +26,7 @@ $(document).ready(function() {
     $("#pointList").sortable();
 
     //서버로부터 여행목록 가져오기
-    getTripList();
-    showTripList();
+    $.when(getTripList()).done(showTripList());
 
 
     $("#saveTrip").on("click", function() {
