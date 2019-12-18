@@ -38,7 +38,7 @@ $(document).ready(function() {
     attachDynamicEventListeners()
 
     $("#closeLookDiv button").on("click", function() {
-        changeScreen_mainPage($(this).text());
+        changeScreen_oneTrip($(this).text());
     });
 
     $("#saveTrip").on("click", function() {
