@@ -55,6 +55,13 @@ $(document).ready(function() {
         }
         if(valid && confirm("저장하시겠습니까?")) {
             //여행 이름, 기간, 요약 저장
+            $.ajax({
+                url: "./saveTrip.php",
+                type: "post",
+                data: $("#oneTravelInfo").serialize()+"&mapLat="+addedTrip_map_center.lat+"&mapLat="+addedTrip_map_center.lng+"&mapLevel="+addedTrip_map_level,
+            }).done(function(data) {
+
+            });
             //일정들 순서 반영
             //입력 필드 초기화
             $("#tripName").val("");
@@ -80,6 +87,13 @@ $(document).ready(function() {
 
         if(valid && confirm("저장하시겠습니까?")) {
             //일정 이름, 기간, 요약 저장
+            $.ajax({
+                url: "./savePoint.php",
+                type: "post",
+                data: "targetJson="+JSON.stringify(aCalandar),
+            }).done(function(data) {
+                console.log("save "+data);
+            });
             //(초록색)마커 위치 저장
             var newPointPosition = currentNewPointMarker.getPosition(); //마커 현재 위치
             currentNewPointMarker.setMap(null); //마커 삭제
@@ -110,10 +124,6 @@ $(document).ready(function() {
         $("#tripListDiv").hide(700);
         $("#selectPositionMessage").show();
         //control버튼들 비활성화
-        $("#selectAlign").attr("disabled", true);
-        $("#alignButton").attr("disabled", true);
-        $("#searchText").attr("disabled", true);
-        $("#searchTripButton").attr("disabled", true);
         $("#addTripButton").attr("disabled", true);
     });
 
@@ -125,24 +135,9 @@ $(document).ready(function() {
         $("#pointListDiv").hide();
 
         //지도 상 (초록색)마커 표시(움직일 수 있게)
-        var imageScr = "./source/marker_green.png",
-            imageSize = new kakao.maps.Size(40, 40),
-            imageOption = {offset : new kakao.maps.Point(20, 50)};
-        
         var aLatlng = screenMap.getCenter();
-
-        var markerImage = new kakao.maps.MarkerImage(imageScr, imageSize, imageOption),
-            markerPosition = new kakao.maps.LatLng(aLatlng.getLat(), aLatlng.getLng());
-
-        var newPointMarker = new kakao.maps.Marker({
-            position : markerPosition,
-            image : markerImage
-        });
-        currentNewPointMarker = newPointMarker;
-
-        newPointMarker.setMap(screenMap);
-        newPointMarker.setDraggable(true);
-
+        currentNewPointMarker =  addMarker(aLatlng.getLat(), aLatlng.getLng(), "green", true);
+        
     });
 
 
@@ -167,10 +162,6 @@ $(document).ready(function() {
         */
 
         //control버튼들 다시 활성화
-        $("#selectAlign").attr("disabled", false);
-        $("#alignButton").attr("disabled", false);
-        $("#searchText").attr("disabled", false);
-        $("#searchTripButton").attr("disabled", false);
         $("#addTripButton").attr("disabled", false);
 
         //content내용 전환
@@ -263,24 +254,7 @@ function showPreviewMap(aTripName) {
     screenMap.setLevel(foundTrip["mapLevel"]);
     //지도 상에 (파란색)마커 표시
     $.each(foundPoints, function(index, aMarkerLocation) {
-        var imageScr = "./source/marker_blue.png",
-            imageSize = new kakao.maps.Size(40, 40),
-            imageOption = {offset : new kakao.maps.Point(20, 50)};
-        
-        var aLatlng = screenMap.getCenter();
-
-        var markerImage = new kakao.maps.MarkerImage(imageScr, imageSize, imageOption),
-            markerPosition = new kakao.maps.LatLng(aMarkerLocation.lat, aMarkerLocation.lng);
-
-        var newPointMarker = new kakao.maps.Marker({
-            position : markerPosition,
-            image : markerImage
-        });
-
-        newPointMarker.setMap(screenMap);
-        newPointMarker.setDraggable(false);
-
-        currentShownMarker.push(newPointMarker);
+        addMarker(aMarkerLocation.lat, aMarkerLocation.lng, "blue", false);
     });
     //마커들 이어주기(선택)
 }
@@ -357,9 +331,12 @@ function changeScreen_oneTrip(aTripName) {
             $("#tripEndDate").val(currentTravelingTrip["endDate"]);
             $("#tripDescription").val(currentTravelingTrip["description"]);
 
+            screenMap.setCenter(currentTravelingTrip["mapCenter"]["lat"], currentTravelingTrip["mapCenter"]["lng"]);
+            screenMap.setLevel(currentTravelingTrip["mapLevel"]);
+
             $.each(currentTravelingTrip["pointsOrder"], function(index, aPoint) {
                 var targetFileName = "./data/"+aTripName.trim()+"/"+aPoint;
-                
+
             });
         });
     }
@@ -376,9 +353,39 @@ function changeScreen_mainPage() {
     $("#travelListControl").show();
 
     //control버튼들 다시 활성화
-    $("#selectAlign").attr("disabled", false);
-    $("#alignButton").attr("disabled", false);
-    $("#searchText").attr("disabled", false);
-    $("#searchTripButton").attr("disabled", false);
     $("#addTripButton").attr("disabled", false);
+}
+
+function addMarker(markerLat, markerLng, markerColor, draggable) {
+    var imageScr = "",
+        imageSize = new kakao.maps.Size(40, 40),
+        imageOption = {offset : new kakao.maps.Point(20, 50)};
+
+    if(markerColor == "blue") {
+        imageScr = "./source/marker_blue.png"
+    }
+    else if(markerColor == "red") {
+        imageScr = "./source/marker_red.png"
+    }
+    else if(markerColor == "green") {
+        imageScr = "./source/marker_green.png"
+    }
+    else if(markerColor == "yellow") {
+        imageScr = "./source/marker_yellow.png"
+    }
+
+    var markerImage = new kakao.maps.MarkerImage(imageScr, imageSize, imageOption),
+        markerPosition = new kakao.maps.LatLng(markerLat, markerLng);
+
+    var newPointMarker = new kakao.maps.Marker({
+        position : markerPosition,
+        image : markerImage
+    });
+
+    newPointMarker.setMap(screenMap);
+    newPointMarker.setDraggable(draggable);
+
+    currentShownMarker.push(newPointMarker);
+
+    return newPointMarker;
 }

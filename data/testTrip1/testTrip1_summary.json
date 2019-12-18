@@ -7,6 +7,7 @@
         "lat" : 36.371800,
         "lng" : 127.347759
     },
+    "mapLevel" : 3,
     "pointsOrder" : [
         "tripPoint_b",
         "tripPoint_a"
