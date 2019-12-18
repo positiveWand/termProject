@@ -27,6 +27,7 @@ $(document).ready(function() {
 
     //서버로부터 여행목록 가져오기
     getTripList();
+    showTripList();
 
 
     $("#saveTrip").on("click", function() {
@@ -231,7 +232,7 @@ function getTripList() {
 
     $.getJSON( "./data/all_trips_summary.json", function( data ) {
         allTripList = data;
-      });
+    });
 }
 
 function showTripList() {
