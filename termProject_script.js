@@ -286,7 +286,7 @@ function clearMap() {
 }
 
 function attachDynamicEventListeners() {
-    $("#tripList li").on("click", function(event) {
+    $("#tripList li").bind("click", function(event) {
         //여행 bar 클릭 시 일어나는 이벤트
         //선택됐다는 표시(css 전환)
         //지도를 중심좌표로 옮기고, 여행의 대표 마커들만 표시
@@ -304,7 +304,7 @@ function attachDynamicEventListeners() {
         }
     });
 
-    $("#tripList li").on("dbclick", function(event) {
+    $("#tripList li").bind("dbclick", function(event) {
         //여행 세부 정보로 이동
         //맵 초기화
         clearMap();
