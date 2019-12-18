@@ -304,6 +304,7 @@ function attachDynamicEventListeners() {
         //여행 세부 정보로 이동
         //맵 초기화
         clearMap();
+        alert("hello");
         //세부 화면으로 전환
     });
 
