@@ -208,7 +208,7 @@ function getAndShowTripList() {
     $.getJSON( "./data/all_trips_summary.json", function( data ) {
         allTripList = data;
         showTripList();
-        attachDynamicEventListeners()
+        //attachDynamicEventListeners()
     });
 }
 
@@ -303,7 +303,6 @@ function attachDynamicEventListeners() {
             clearMap();
         }
     });
-
     $("#tripList li").bind("dbclick", function(event) {
         //여행 세부 정보로 이동
         //맵 초기화
