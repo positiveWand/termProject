@@ -39,7 +39,7 @@ $(document).ready(function() {
     attachDynamicEventListeners()
 
     $("#closeLookDiv button").on("click", function() {
-        changeScreen_oneTrip($(this).text());
+        changeScreen_oneTrip(selectedTripName);
     });
 
     $("#saveTrip").on("click", function() {
@@ -358,7 +358,7 @@ function changeScreen_oneTrip(aTripName) {
             $("#tripDescription").val(currentTravelingTrip["description"]);
 
             $.each(currentTravelingTrip["pointsOrder"], function(index, aPoint) {
-                
+
             });
         });
     }
