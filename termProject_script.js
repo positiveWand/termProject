@@ -260,10 +260,10 @@ function showPreviewMap(aTripName) {
             return true;
         }
     });
-    //지도 중심 좌표 (부드럽게)옮기기
-    screenMap.panTo(new kakao.maps.LatLng(foundTrip["mapCenter"]["lat"], foundTrip["mapCenter"]["lng"]));
     //지도 확대하기
     screenMap.setLevel(foundTrip["mapLevel"]);
+    //지도 중심 좌표 (부드럽게)옮기기
+    screenMap.panTo(new kakao.maps.LatLng(foundTrip["mapCenter"]["lat"], foundTrip["mapCenter"]["lng"]));
     //지도 상에 (파란색)마커 표시
     $.each(foundPoints, function(index, aMarkerLocation) {
         addMarker(aMarkerLocation.lat, aMarkerLocation.lng, "blue", false, "");
