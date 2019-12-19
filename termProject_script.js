@@ -211,6 +211,7 @@ function getAndShowTripList() {
 }
 
 function showTripList() {
+    $("#tripList").text("");
     var items = [];
     $.each( allTripList, function(index, aTrip) {
         var anItem = "<li>";
