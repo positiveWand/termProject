@@ -58,7 +58,7 @@ $(document).ready(function() {
             $.ajax({
                 url: "./saveTrip.php",
                 type: "post",
-                data: $("#oneTravelInfo").serialize()+"&mapLat="+addedTrip_map_center.lat+"&mapLat="+addedTrip_map_center.lng+"&mapLevel="+addedTrip_map_level,
+                data: $("#oneTravelInfo").serialize()+"&mapLat="+addedTrip_map_center.lat+"&mapLng="+addedTrip_map_center.lng+"&mapLevel="+addedTrip_map_level,
             }).done(function(data) {
 
             });
