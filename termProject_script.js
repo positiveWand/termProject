@@ -361,9 +361,9 @@ function changeScreen_oneTrip(aTripName) {
             $("#tripStartDate").val(currentTravelingTrip["startDate"]);
             $("#tripEndDate").val(currentTravelingTrip["endDate"]);
             $("#tripDescription").val(currentTravelingTrip["description"]);
-
-            screenMap.setCenter(new kakao.maps.LatLng(currentTravelingTrip["mapCenter"]["lat"], currentTravelingTrip["mapCenter"]["lng"]));
+            
             screenMap.setLevel(currentTravelingTrip["mapLevel"]);
+            screenMap.setCenter(new kakao.maps.LatLng(currentTravelingTrip["mapCenter"]["lat"], currentTravelingTrip["mapCenter"]["lng"]));
 
 
             // 각 일정들에 대한 정보(마커, 내용)
