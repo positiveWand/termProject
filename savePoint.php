@@ -13,8 +13,10 @@ $pointData = array(
     "pointLocation" => array("lat" => (double) $pointLat, "lng" => (double) $pointLng)
 );
 
+$fileName = "./data/".$tripName."/".$poinName.".json";
+var_dump($pointData,$fileName);
 
-var_dump($pointData, $tripName, $pointName, $pointDate);
+file_put_contents($fileName, json_encode($pointData));
 
 
 
