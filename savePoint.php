@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+
+ini_set("display_errors", 1);
 $tripName = $_POST["tripName"];
 $pointName = $_POST["pointName"];
 $pointDate = $_POST["pointDate"];
