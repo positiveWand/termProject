@@ -45,6 +45,7 @@ $(document).ready(function() {
     });
 
     $("#saveTrip").on("click", function() {
+        $("#tripName").attr("readonly", false);
         var valid = true;
         //여행 이름, 기간, 요약 validate
         if($("#tripName").val().trim() == "" || $("#tripDescription").val().trim() == "") {
@@ -152,6 +153,8 @@ $(document).ready(function() {
 
             changeScreen_oneTrip("");
             newTrip = true;
+
+            $("#tripName").attr("readonly", false);
         }
     });
     $("#addTripCancel").on("click", function() {
