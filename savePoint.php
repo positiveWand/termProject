@@ -18,6 +18,12 @@ var_dump($pointData,$fileName);
 var_dump(json_encode($pointData));
 file_put_contents($fileName, json_encode($pointData));
 
+$fileName = "./data/".$tripName."/".$tripName.+"_summary.json";
+$tripSummaryJSON = file_get_contents($fileName);
+$tripSummaryArray = json_decode($tripSummaryJSON, true);
+
+array_push($tripSummaryArray["pointsOrder"], $pointName);
+
 
 
 echo "success";
