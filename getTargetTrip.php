@@ -23,7 +23,8 @@ $packageArray = array(
     "pointsList" => array()
 );
 var_dump($packageArray)
-
+var_dump($summaryArray["pointsOrder"][0]);
+/*
 for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
     $targetPoint = $summaryArray["pointsOrder"][$i];
     $targetFile = "./data/".$targetTripTitle."/".$targetPoint.".json";
@@ -32,7 +33,7 @@ for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
     array_push($packageArray["pointsList"], json_decode($pointJson, true));
 }
 
-/*
+
 
 var_dump($packageArray);
 
