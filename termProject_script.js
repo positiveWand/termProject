@@ -58,9 +58,8 @@ $(document).ready(function() {
             $.ajax({
                 url: "./saveTrip.php",
                 type: "post",
-                data: $("#oneTravelInfo").serialize()+"&mapLat="+addedTrip_map_center.lat+"&mapLng="+addedTrip_map_center.lng+"&mapLevel="+addedTrip_map_level,
+                data: $("#oneTravelInfo").serialize()
             }).done(function(data) {
-                //일정들 순서 반영
                 //입력 필드 초기화
                 $("#tripName").val("");
                 $("#tripDescription").val("");
@@ -202,7 +201,6 @@ function readyMap() {
     });
 }
 function getAndShowTripList() {
-
     $.getJSON( "./data/all_trips_summary.json", function( data ) {
         allTripList = data;
         showTripList();

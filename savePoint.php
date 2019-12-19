@@ -32,11 +32,16 @@ file_put_contents($fileName, json_encode($tripSummaryArray));
 
 $fileName = "./data/all_trips_summary.json";
 $allTripsSummaryJSON = file_get_contents($fileName);
-$allTripsSummarArray = json_decode($allTripsSummaryJSON, true);
+$allTripsSummaryArray = json_decode($allTripsSummaryJSON, true);
 
-array_push($allTripsSummarArray["mapPoints"], array("lat" => $pointLat, "lng" => $pointLng));
+for($i = 0; $i < count($allTripsSummaryArray); $i++) {
+    if($allTripsSummaryArray[$i]["title"] == $tripName) {
+        array_push($allTripsSummaryArray[$i]["mapPoints"], array("lat" => $pointLat, "lng" => $pointLng));
+        break;
+    }
+}
 
-file_put_contents($fileName, json_encode($allTripsSummarArray));
+file_put_contents($fileName, json_encode($allTripsSummaryArray));
 
 
 
