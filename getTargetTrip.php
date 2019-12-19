@@ -37,7 +37,7 @@ for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
 
 //var_dump($packageArray);
 
-echo json_encode($packageArray, JSON_UNESCAPED_UNICODE);
+echo json_encode($packageArray);
 
 
 

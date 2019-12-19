@@ -28,7 +28,7 @@ $tripSummaryArray = json_decode($tripSummaryJSON, true);
 array_push($tripSummaryArray["pointsOrder"], $pointName);
 var_dump($tripSummaryArray);
 
-file_put_contents($fileName, json_encode($tripSummaryArray, JSON_UNESCAPED_UNICODE));
+file_put_contents($fileName, json_encode($tripSummaryArray));
 
 $fileName = "./data/all_trips_summary.json";
 $allTripsSummaryJSON = file_get_contents($fileName);
@@ -41,7 +41,7 @@ for($i = 0; $i < count($allTripsSummaryArray); $i++) {
     }
 }
 
-file_put_contents($fileName, json_encode($allTripsSummaryArray, JSON_UNESCAPED_UNICODE));
+file_put_contents($fileName, json_encode($allTripsSummaryArray));
 
 
 
