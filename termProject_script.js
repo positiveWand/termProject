@@ -137,7 +137,7 @@ $(document).ready(function() {
 
         //지도 상 (초록색)마커 표시(움직일 수 있게)
         var aLatlng = screenMap.getCenter();
-        currentNewPointMarker =  addMarker(aLatlng.getLat(), aLatlng.getLng(), "red", true);
+        currentNewPointMarker =  addMarker(aLatlng.getLat(), aLatlng.getLng(), "red", true, "이걸 옮겨주세요!");
         
     });
 
@@ -264,7 +264,7 @@ function showPreviewMap(aTripName) {
     screenMap.setLevel(foundTrip["mapLevel"]);
     //지도 상에 (파란색)마커 표시
     $.each(foundPoints, function(index, aMarkerLocation) {
-        addMarker(aMarkerLocation.lat, aMarkerLocation.lng, "blue", false);
+        addMarker(aMarkerLocation.lat, aMarkerLocation.lng, "blue", false, "");
     });
     //마커들 이어주기(선택)
 }
@@ -377,7 +377,7 @@ function changeScreen_oneTrip(aTripName) {
                         anItem += "<li>내용 : "+value+"</li></ul>" ;
                     }
                     else if(key == "pointLocation") {
-                        addMarker(value["lat"], value["lng"], "blue", false);
+                        addMarker(value["lat"], value["lng"], "blue", false, aPoint["pointName"]);
                     }
                 });
                 anItem += "</li>";
@@ -414,7 +414,7 @@ function changeScreen_mainPage() {
     clearMap();
 }
 
-function addMarker(markerLat, markerLng, markerColor, draggable) {
+function addMarker(markerLat, markerLng, markerColor, draggable, markerContent) {
     var imageScr = "",
         imageSize = new kakao.maps.Size(40, 40),
         imageOption = {offset : new kakao.maps.Point(20, 50)};
@@ -444,6 +444,18 @@ function addMarker(markerLat, markerLng, markerColor, draggable) {
     newPointMarker.setDraggable(draggable);
 
     currentShownMarker.push(newPointMarker);
+
+    var iwContent = '<div style="padding:5px;">'+markerContent+'</div>',
+    iwPosition = new kakao.maps.LatLng(markerLat, markerLng); //인포윈도우 표시 위치입니다
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        position : iwPosition, 
+        content : iwContent 
+    });
+    
+    // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+    infowindow.open(map, marker); 
 
     return newPointMarker;
 }
