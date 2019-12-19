@@ -60,16 +60,15 @@ $(document).ready(function() {
                 type: "post",
                 data: $("#oneTravelInfo").serialize()+"&mapLat="+addedTrip_map_center.lat+"&mapLng="+addedTrip_map_center.lng+"&mapLevel="+addedTrip_map_level,
             }).done(function(data) {
-
+                //일정들 순서 반영
+                //입력 필드 초기화
+                $("#tripName").val("");
+                $("#tripDescription").val("");
+                $("#tripStartDate").val("");
+                $("#tripEndDate").val("");
+                //화면 전환
+                changeScreen_mainPage();
             });
-            //일정들 순서 반영
-            //입력 필드 초기화
-            $("#tripName").val("");
-            $("#tripDescription").val("");
-            $("#tripStartDate").val("");
-            $("#tripEndDate").val("");
-            //화면 전환
-            changeScreen_mainPage();
         }
     });
 
@@ -324,8 +323,17 @@ function changeScreen_oneTrip(aTripName) {
     else { //기존의 여행을 조회하는 경우
         //기존의 정보들을 가져와 출력한다
         //여행 이름, 여행 기간, 여행 요약, 지도 초기위치, 마커, 일정들에 대한 정보
-        $.getJSON( "./data/"+aTripName.trim()+"/"+aTripName.trim()+"_summary.json", function( data ) {
-            currentTravelingTrip = data;
+        $.ajax({
+            url: "./getTargetTrip.php",
+            type: "post",
+            data: "&targetTrip="+aTripName.trim()
+        }).done(function(jsonData) {
+            // 전달된 문자열 json으로, 객체로 해석
+            jsonData = JSON.parse(jsonData);
+            // 전역 변수 갱신
+            currentTravelingTrip = jsonData;
+
+            // 여행 관련 정보 출력(이름, 기간, 요약, 지도 초기위치)
             $("#tripName").val(currentTravelingTrip["title"]);
             $("#tripStartDate").val(currentTravelingTrip["startDate"]);
             $("#tripEndDate").val(currentTravelingTrip["endDate"]);
@@ -334,10 +342,32 @@ function changeScreen_oneTrip(aTripName) {
             screenMap.setCenter(new kakao.maps.LatLng(currentTravelingTrip["mapCenter"]["lat"], currentTravelingTrip["mapCenter"]["lng"]));
             screenMap.setLevel(currentTravelingTrip["mapLevel"]);
 
-            $.each(currentTravelingTrip["pointsOrder"], function(index, aPoint) {
-                var targetFileName = "./data/"+aTripName.trim()+"/"+aPoint;
 
+            // 각 일정들에 대한 정보(마커, 내용)
+            var items = [];
+            $.each(currentTravelingTrip["pointsList"], function(index, aPoint) {
+                var anItem = "<li>";
+
+                $.each(aPoint, function(key, value) {
+                    if(key == "pointName") {
+                        anItem += "<div class=\"accordion\">"+value+"</div><ul class=\"toggleList\">";
+                    }
+                    else if(key == "date") {
+                        anItem += "<li>날짜 : "+value+"</li>";
+                    }
+                    else if(key == "description") {
+                        anItem += "<li>내용 : "+value+"</li></ul>" ;
+                    }
+                    else if(key == "pointLocation") {
+                        addMarker(value["lat"], value["lng"], "blue", false);
+                    }
+                });
+                anItem += "</li>";
+
+                items.push(anItem);
             });
+
+            $("#pointList").append(items.join(""));
         });
     }
 }
@@ -354,6 +384,8 @@ function changeScreen_mainPage() {
 
     //control버튼들 다시 활성화
     $("#addTripButton").attr("disabled", false);
+
+    clearMap();
 }
 
 function addMarker(markerLat, markerLng, markerColor, draggable) {

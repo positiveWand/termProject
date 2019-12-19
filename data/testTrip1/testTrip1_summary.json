@@ -9,7 +9,7 @@
     },
     "mapLevel" : 3,
     "pointsOrder" : [
-        "tripPoint_b",
+        "library",
         "tripPoint_a"
     ]
 }
