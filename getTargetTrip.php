@@ -5,9 +5,9 @@ $targetFile = "./data/".$targetTripTitle."/".$targetTripTitle."_summary.json";
 $summaryJson = file_get_contents($targetFile);
 var_dump($summaryJson);
 $summaryArray = json_decode($summaryJson);
-/*
-var_dump($summaryArray);
 
+var_dump($summaryArray);
+/*
 $packageArray = array(
     "title" => $summaryArray["title"],
     "startDate" => $summaryArray["startDate"],
