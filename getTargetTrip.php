@@ -6,8 +6,8 @@ $summaryJson = file_get_contents($targetFile);
 var_dump($summaryJson);
 $summaryArray = json_decode($summaryJson);
 
-var_dump($summaryArray);
 
+var_dump($summaryArray["title"]);
 /*
 $packageArray = array(
     "title" => $summaryArray["title"],
