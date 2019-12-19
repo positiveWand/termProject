@@ -3,6 +3,7 @@ $targetTripTitle = $_POST["targetTrip"];
 
 $summaryJson = file_get_contents("./data/".$targetTripTitle."/".$targetTripTitle+"_summary.json");
 $summaryArray = json_decode($summaryJson);
+var_dump($summaryArray);
 
 $packageArray = array(
     "title" => $summaryArray["title"],
