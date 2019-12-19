@@ -36,7 +36,7 @@ $allTripsSummaryArray = json_decode($allTripsSummaryJSON, true);
 
 for($i = 0; $i < count($allTripsSummaryArray); $i++) {
     if($allTripsSummaryArray[$i]["title"] == $tripName) {
-        array_push($allTripsSummaryArray[$i]["mapPoints"], array("lat" => $pointLat, "lng" => $pointLng));
+        array_push($allTripsSummaryArray[$i]["mainPoints"], array("lat" => $pointLat, "lng" => $pointLng));
         break;
     }
 }
