@@ -16,7 +16,7 @@ $tripData = array(
     "startDate" => $tripStartDate,
     "endDate" => $tripEndDate,
     "mapCenter" => array("lat" => $mapLat, "lng" => $mapLng),
-    "mapLevel" => $mapLevel
+    "mapLevel" => $mapLevel,
     "mainPoints" => array()
 );
 
