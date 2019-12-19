@@ -17,13 +17,14 @@ $packageArray = array(
     "mapLevel" => $summaryArray["mapLevel"],
     "pointsList" => array()
 );
-
+/*
 for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
     $targetPoint = $summaryArray["pointsOrder"][$i];
     $targetFile = "./data/".$targetTripTitle."/".$targetPoint.".json";
     $pointJson = file_get_contents($targetFile);
     array_push($packageArray["pointsList"], json_decode($pointJson));
 }
+*/
 
 var_dump($packageArray);
 
