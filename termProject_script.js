@@ -444,7 +444,7 @@ function addMarker(markerLat, markerLng, markerColor, draggable, markerContent) 
     newPointMarker.setDraggable(draggable);
 
     currentShownMarker.push(newPointMarker);
-    if(markerContent == "") {
+    if(markerContent != "") {
         var iwContent = '<div style="padding:5px;">'+markerContent+'</div>',
         iwPosition = new kakao.maps.LatLng(markerLat, markerLng); //인포윈도우 표시 위치입니다
 
