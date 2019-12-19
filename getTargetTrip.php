@@ -2,6 +2,7 @@
 error_reporting(E_ALL);
 
 ini_set("display_errors", 1);
+
 $targetTripTitle = $_POST["targetTrip"];
 var_dump($targetTripTitle);
 $targetFile = "./data/".$targetTripTitle."/".$targetTripTitle."_summary.json";
@@ -27,7 +28,7 @@ for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
     $targetPoint = $summaryArray["pointsOrder"][$i];
     $targetFile = "./data/".$targetTripTitle."/".$targetPoint.".json";
     $pointJson = file_get_contents($targetFile);
-    array_push($packageArray["pointsList"], json_decode($pointJson));
+    array_push($packageArray["pointsList"], json_decode($pointJson,true));
 }
 
 
