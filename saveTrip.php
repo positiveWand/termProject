@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 
 ini_set("display_errors", 1);
-$newTrip = $_POST["newTrip"]
+$newTrip = $_POST["newTrip"];
 $tripName = $_POST["tripName"];
 $tripStartDate = $_POST["tripStartDate"];
 $tripEndDate = $_POST["tripEndDate"];
