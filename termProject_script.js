@@ -97,16 +97,14 @@ $(document).ready(function() {
                 type: "post",
                 data: $("#pointInfoForm").serialize()+"&tripName="+currentTravelingTrip["title"]+"&lat="+newPointPosition.getLat()+"&lng="+newPointPosition.getLng()
             }).done(function(data) {
-                console.log("save "+data);
+                //입력 필드 초기화
+                $("#pointName").val("");
+                $("#pointDescription").val("");
+                $("#pointDate").val("");
+                //화면 전환
+                changeScreen_oneTrip(currentTravelingTrip["title"]);
             });
 
-
-            //입력 필드 초기화
-            $("#pointName").val("");
-            $("#pointDescription").val("");
-            $("#pointDate").val("");
-            //화면 전환
-            changeScreen_oneTrip(currentTravelingTrip["title"]);
         }
     });
 

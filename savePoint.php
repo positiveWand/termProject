@@ -3,8 +3,8 @@ $tripName = $_POST["tripName"];
 $pointName = $_POST["pointName"];
 $pointDate = $_POST["pointDate"];
 $pointDescription = $_POST["pointDescription"];
-$pointLat = $_POST["mapLat"];
-$pointLng = $_POST["mapLng"];
+$pointLat = $_POST["lat"];
+$pointLng = $_POST["lng"];
 
 $pointData = array(
     "pointName" => $pointName,
