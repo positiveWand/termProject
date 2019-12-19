@@ -7,7 +7,7 @@ var_dump($summaryJson);
 $summaryArray = json_decode($summaryJson);
 
 var_dump($summaryArray);
-var_dump($summaryArray["title"], $summaryArray["startDate"], $summaryArray["endDate"], $summaryArray["description"], $summaryArray["mapLevel"]);
+var_dump($summaryArray["title"], $summaryArray["startDate"]);
 /*
 $packageArray = array(
     "title" => $summaryArray["title"],
