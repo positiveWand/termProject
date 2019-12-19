@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+
+ini_set("display_errors", 1);
+[출처] php 500 에러 internal Server Error 내용 확인하기|작성자 이미경
 $targetTripTitle = $_POST["targetTrip"];
 var_dump($targetTripTitle);
 $targetFile = "./data/".$targetTripTitle."/".$targetTripTitle."_summary.json";
@@ -7,6 +11,7 @@ var_dump($summaryJson);
 $summaryArray = json_decode($summaryJson);
 
 var_dump($summaryArray);
+var_dump($summaryArray["title"]);
 /*
 $packageArray = array(
     "title" => $summaryArray["title"],
