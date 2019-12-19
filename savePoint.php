@@ -13,7 +13,9 @@ $pointData = array(
     "pointLocation" => array("lat" => (double) $pointLat, "lng" => (double) $pointLng)
 );
 
+
 var_dump($pointData);
+
 
 
 echo "success";
