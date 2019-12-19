@@ -24,10 +24,11 @@ for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
     $pointJson = file_get_contents($targetFile);
     array_push($packageArray["pointsList"], json_decode($pointJson));
 }
-*/
+
 
 var_dump($packageArray);
 
 echo json_encode($packageArray);
+*/
 
 ?>
