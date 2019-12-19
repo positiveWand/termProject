@@ -327,7 +327,7 @@ function changeScreen_oneTrip(aTripName) {
         $.ajax({
             url: "./getTargetTrip.php",
             type: "post",
-            data: "&targetTrip="+aTripName.trim()
+            data: "&targetTrip="+aTripName
         }).done(function(jsonData) {
             // 전달된 문자열 json으로, 객체로 해석
             console.log(jsonData);
