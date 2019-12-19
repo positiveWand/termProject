@@ -58,7 +58,7 @@ $(document).ready(function() {
             $.ajax({
                 url: "./saveTrip.php",
                 type: "post",
-                data: $("#oneTravelInfo").serialize()
+                data: $("#oneTravelInfo").serialize()+"&mapLat="+screenMap.getCenter().getLat()+"&mapLng="+screenMap.getCenter().getLng()+"&mapLevel="+screenMap.getLevel()
             }).done(function(data) {
                 //입력 필드 초기화
                 $("#tripName").val("");
