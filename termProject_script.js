@@ -16,6 +16,7 @@ var current_shownTripList = null; //현재 화면에 보여지고 있는 여행�
 var tripSelected = false;
 var selectedTripName = "";
 var selectedTripDatetime = "";
+var newTrip = false;
 
 $(document).ready(function() {
     readyMap();
@@ -40,6 +41,7 @@ $(document).ready(function() {
 
     $("#closeLookDiv button").on("click", function() {
         changeScreen_oneTrip(selectedTripName);
+        newTrip = false;
     });
 
     $("#saveTrip").on("click", function() {
@@ -58,7 +60,7 @@ $(document).ready(function() {
             $.ajax({
                 url: "./saveTrip.php",
                 type: "post",
-                data: $("#oneTravelInfo").serialize()+"&mapLat="+screenMap.getCenter().getLat()+"&mapLng="+screenMap.getCenter().getLng()+"&mapLevel="+screenMap.getLevel()
+                data: $("#oneTravelInfo").serialize()+"&mapLat="+screenMap.getCenter().getLat()+"&mapLng="+screenMap.getCenter().getLng()+"&mapLevel="+screenMap.getLevel()+"&newTrip="+newTrip
             }).done(function(data) {
                 //입력 필드 초기화
                 $("#tripName").val("");
@@ -149,7 +151,7 @@ $(document).ready(function() {
             addedTrip_map_level = screenMap.getLevel();
 
             changeScreen_oneTrip("");
-
+            newTrip = true;
         }
     });
     $("#addTripCancel").on("click", function() {
