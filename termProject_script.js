@@ -308,6 +308,7 @@ function attachDynamicEventListeners() {
 
 function changeScreen_oneTrip(aTripName) {
     clearMap();
+
     $("#tripListDiv").hide();
     $("#selectPositionMessage").hide();
     $("#travelListControl").hide();
@@ -329,6 +330,7 @@ function changeScreen_oneTrip(aTripName) {
             data: "&targetTrip="+aTripName.trim()
         }).done(function(jsonData) {
             // 전달된 문자열 json으로, 객체로 해석
+            console.log(jsonData);
             jsonData = JSON.parse(jsonData);
             // 전역 변수 갱신
             currentTravelingTrip = jsonData;
