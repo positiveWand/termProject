@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+
+ini_set("display_errors", 1);
 $newTrip = $_POST["newTrip"]
 $tripName = $_POST["tripName"];
 $tripStartDate = $_POST["tripStartDate"];
@@ -33,9 +36,12 @@ $tripData["mainPoints"] = $mainPointList;
 
 array_push($allTripsSummaryArray, $tripData);
 
+
 file_put_contents($fileName, json_encode($allTripsSummaryArray));
 
-
+if($newTrip == "true") {
+    mkdir($tripName);
+} 
 $fileName = "./data/".$tripName."/".$tripName."_summary.json";
 $tripSummaryJSON = file_get_contents($fileName);
 $tripSummaryArray = json_decode($tripSummaryJSON, true);
@@ -46,6 +52,9 @@ $tripSummaryArray["endDate"] = $tripEndDate;
 $tripSummaryArray["description"] = $tripDescription;
 $tripSummaryArray["mapCenter"] = array("lat" => $mapLat, "lng" => $mapLng);
 $tripSummaryArray["mapLevel"] = $mapLevel;
+if($newTrip == "true") {
+    $tripSummaryArray["pointsOrder"] = array();
+}
 
 file_put_contents($fileName, json_encode($tripSummaryArray));
 
