@@ -318,6 +318,7 @@ function changeScreen_oneTrip(aTripName) {
     $("#oneTravelControl").show();
     $("#pointListDiv").show();
 
+    $("#pointList").text("");
     if(aTripName == "") { //새로운 여행을 등록하는 경우
         //아무것도 하지 않는다
     }
