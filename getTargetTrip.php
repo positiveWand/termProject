@@ -5,6 +5,7 @@ $targetFile = "./data/".$targetTripTitle."/".$targetTripTitle."_summary.json";
 $summaryJson = file_get_contents($targetFile);
 var_dump($summaryJson);
 $summaryArray = json_decode($summaryJson);
+/*
 var_dump($summaryArray);
 
 $packageArray = array(
@@ -26,4 +27,5 @@ for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
 var_dump($packageArray);
 
 echo json_encode($packageArray);
+*/
 ?>
