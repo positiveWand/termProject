@@ -20,10 +20,11 @@ $packageArray = array(
 
 for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
     $targetPoint = $summaryArray["pointsOrder"][$i];
-    $pointJson = file_get_contents("./data/".$targetTripTitle."/".$targetPoint.".json");
+    $targetFile = "./data/".$targetTripTitle."/".$targetPoint.".json";
+    $pointJson = file_get_contents($targetFile);
     array_push($packageArray["pointsList"], json_decode($pointJson));
 }
-
+/*
 var_dump($packageArray);
 
 echo json_encode($packageArray);
