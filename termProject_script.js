@@ -1,10 +1,10 @@
 
 var screenMap;
 
-var allTripList = null;
-var currentTravelingTrip = null;
-var currentShownMarker = [];
-var currentShowInfoWindow = [];
+var allTripList = null; //서버로부터 받은 여행들
+var currentTravelingTrip = null; //현재 수정하고 있는 여행 이름
+var currentShownMarker = []; //현재 지도에 있는 마커
+var currentShowInfoWindow = []; //현재 지도에 있는 InfoWindow(정보창->마커 위에 표시)
 
 
 var addedTrip_map_center = [];
@@ -20,8 +20,9 @@ var selectedTripDatetime = "";
 var newTrip = false;
 
 $(document).ready(function() {
-    readyMap();
+    readyMap(); //지도 준비
 
+    //초기화면 설정(숨겨야하는 요소들 숨기기)
     $(".emptyListMessage").hide();
     $("#closeLookDiv").hide();
     $("#selectPositionMessage").hide();
@@ -29,22 +30,22 @@ $(document).ready(function() {
     $("#newPointControl").hide();
 
     $("#pointListDiv").hide();
-    $("#pointList").sortable();
+    $("#pointList").sortable(); //
 
-    //서버로부터 여행목록 가져오기
-    //getTripList();
-    //showTripList();
+    //첫 화면 로드(서버로부터 정보를 가져와 출력)
     changeScreen_mainPage()
-
-
-
+    //추가된 요소(동적요소)들에 이벤트 리스너 붙이기
     attachDynamicEventListeners()
 
+
+    //정적인 요소들에 이벤트 리스너 붙여주기
+    //"자세히 보기" 버튼
     $("#closeLookDiv button").on("click", function() {
         changeScreen_oneTrip(selectedTripName);
         newTrip = false;
     });
 
+    //여행 세부정보의 "저장하기" 버튼
     $("#saveTrip").on("click", function() {
         $("#tripName").attr("readonly", true);
         var valid = true;
@@ -57,6 +58,7 @@ $(document).ready(function() {
             alert("기간을 알맞게 설정해주세요");
             valid = false;
         }
+        //저장에 대한 confirm창
         if(valid && confirm("저장하시겠습니까?")) {
             //여행 이름, 기간, 요약 저장
             $.ajax({
@@ -70,12 +72,13 @@ $(document).ready(function() {
                 $("#tripDescription").val("");
                 $("#tripStartDate").val("");
                 $("#tripEndDate").val("");
-                //화면 전환
+                //화면 전환(첫 화면)
                 changeScreen_mainPage();
             });
         }
     });
 
+    //일정 추가하기 화면의 "저장하기"
     $("#savePoint").on("click", function() {
         var valid = true;
         //일정 이름, 날짜, 요약 validate
@@ -87,11 +90,11 @@ $(document).ready(function() {
             alert("기간을 알맞게 설정해주세요");
             valid = false;
         }
-
+        //저장에 대한 confirm창
         if(valid && confirm("저장하시겠습니까?")) {
             //(빨간색)마커 위치 저장
-            var newPointPosition = currentNewPointMarker.getPosition(); //마커 현재 위치
-            currentNewPointMarker.setMap(null); //마커 삭제
+            var newPointPosition = currentNewPointMarker.getPosition(); //마커 현재 위치 저장
+            currentNewPointMarker.setMap(null); //마커 지도에서 삭제
             console.log(newPointPosition);
 
             //일정 이름, 기간, 요약 저장
@@ -112,7 +115,7 @@ $(document).ready(function() {
         }
     });
 
-
+    //"여행 추가하기" 버튼
     $("#addTripButton").on("click", function(){
         /*
         *<화면 전환>
@@ -120,7 +123,7 @@ $(document).ready(function() {
         *-설정 후에 여행 편집 컨트롤로 넘어감
         */
 
-        clearMap();
+        clearMap(); //지도 비우기(마커, 인포윈도우 삭제)
 
         //지도 초기 위치 설정 화면
         //content내용 전환
@@ -130,6 +133,7 @@ $(document).ready(function() {
         $("#addTripButton").attr("disabled", true);
     });
 
+    //"일정 추가하기" 버튼
     $("#addPointButton").on("click", function(){
         //control 내용 전환
         $("#oneTravelControl").hide();
@@ -143,7 +147,7 @@ $(document).ready(function() {
         
     });
 
-
+    //"여기 입니다!" 버튼(여행 추가하기 후에 나타남)
     $("#thisPlaceButton").on("click", function() {
         //확인 메세지 출력
         //만약 선택됐다면 다음 화면으로 넘어감
@@ -159,6 +163,7 @@ $(document).ready(function() {
             $("#tripName").attr("readonly", false);
         }
     });
+    //여행 추가하기 화면 중 "취소하기" 버튼
     $("#addTripCancel").on("click", function() {
         /*
         *<화면 전환>
@@ -173,11 +178,9 @@ $(document).ready(function() {
         $("#selectPositionMessage").hide();
         $("#tripListDiv").show(700);
     });
-
-    
-
 });
 
+//웹페이지가 처음 로드될때 지도를 생성하여 출력한다
 function readyMap() {
     var container = document.getElementById("kakaoMap"); // 지도를 표시할 div
     var options = { //지도의 초기설정값
@@ -194,8 +197,7 @@ function readyMap() {
     //2. 지도 확대/축소 컨트롤
     var zoomControl = new kakao.maps.ZoomControl(); //지도의 확대/축소 컨트롤 생성
     screenMap.addControl(zoomControl, kakao.maps.ControlPosition.LEFT); //컨트롤 추가(왼쪽)
-
-
+    /*
     kakao.maps.event.addListener(screenMap, 'click', function(mouseEvent) {        
     
         // 클릭한 위도, 경도 정보를 가져옵니다 
@@ -206,15 +208,19 @@ function readyMap() {
         console.log(latlng)
         
     });
+    */
 }
+
+//서버로부터 메인페이지에 필요한 여행정보들을 가져와 화면에 출력
 function getAndShowTripList() {
     $.getJSON( "./data/all_trips_summary.json", function( data ) {
-        allTripList = data;
-        showTripList();
-        attachDynamicEventListeners();
+        allTripList = data; //전달된 정보 저장(전역변수)
+        showTripList(); //저장된 정보를 이용해 알맞게 화면에 출력
+        attachDynamicEventListeners(); //동적으로 추가된 HTML요소들에 이벤트 리스너 부착
     });
 }
 
+//전역변수에 저장된 정보를 토대로 HTML요소 제작 후 출력
 function showTripList() {
     $("#tripList").text("");
     var noItems = true;
@@ -246,9 +252,9 @@ function showTripList() {
     $("#tripList").append(items.join(""));
 }
 
-
+//여행 미리보기 시에 호출되는 함수(일정들에 대한 대략적인 정보를 지도에 출력)
 function showPreviewMap(aTripName) {
-    clearMap();
+    clearMap(); //지도 초기화
     var foundTrip = null;
     var foundPoints = [];
     //저장돼있던 정보 가저오기
@@ -268,31 +274,31 @@ function showPreviewMap(aTripName) {
     $.each(foundPoints, function(index, aMarkerLocation) {
         addMarker(aMarkerLocation.lat, aMarkerLocation.lng, "blue", false, "");
     });
-    //마커들 이어주기(선택)
 }
 
+
+//지도를 초기화(기존에 있던 마커, 인포윈도우 삭제)
 function clearMap() {
     $.each(currentShownMarker, function(index, aMarker) {
         //모든 마커 삭제(지도에서부터)
         aMarker.setMap(null);
     });
     $.each(currentShowInfoWindow, function(index, aInfoWindow) {
-        //모든 마커 삭제(지도에서부터)
+        //모든 인포윈도우 삭제(지도에서부터)
         aInfoWindow.close();
     });
     currentShownMarker = []; //초기화
     currentShowInfoWindow = []; //초기화
 }
 
-function showMap() {
-
-}
-
+//동적으로 추가되는 요소들에 이벤트 리스너를 부착해주는 함수
 function attachDynamicEventListeners() {
     $("#tripList li").off("click");
     $(".accordion").off("click");
 
+    //여행 리스트의 각 여행 아이템
     $("#tripList li").on("click", function(event) {
+        //버튼처럼 toggle할 수 있고 on/off 될때 컨트롤과 지도의 모습이 바뀐다
         $("#tripList li").css("background-color", "rgb(61, 138, 238)");
         if ($(this).find("span[class='peekTitle']").text() != selectedTripName) {
             $(this).css("background-color", "rgb(43, 98, 170)");
@@ -300,7 +306,7 @@ function attachDynamicEventListeners() {
             selectedTripName = $(this).find("span[class='peekTitle']").text();
 
             $("#closeLookDiv").show(700);
-            showPreviewMap(selectedTripName);
+            showPreviewMap(selectedTripName); //해당 여행의 미리보기 출력
         }
         else {
             tripSelected = false;
@@ -310,8 +316,9 @@ function attachDynamicEventListeners() {
         }
     })
 
-
+    //일정 리스트의 일정 아이템
     $(".accordion").on("click", function() {
+        //일정 리스트의 Drop-down리스트가 구현됨
         $(this).next().toggle(700);
         if($(this).attr("class") == "accordion") {
             $(this).attr("class", "accordion accordionActive");
@@ -324,20 +331,24 @@ function attachDynamicEventListeners() {
     });
 }
 
+//특정 여행(aTripName)을 서버로부터 요청해 구체적인 정보를 가져오고 이를 토대로 웹페이지 전환(여행 세부정보)
 function changeScreen_oneTrip(aTripName) {
-    clearMap();
+    clearMap(); //지도 초기화
 
+    //화면 전환
+    //숨겨야할 요소 숨기기
     $("#tripListDiv").hide();
     $("#selectPositionMessage").hide();
     $("#travelListControl").hide();
     $("#newPointControl").hide();
     $("#emptyPointsList").hide();
 
+    //보여야할 요소 보이기
     $("#controlTitle").text("~여행 중~");
     $("#oneTravelControl").show();
     $("#pointListDiv").show();
+    $("#pointList").text(""); //리스트 요소 초기화
 
-    $("#pointList").text("");
     if(aTripName == "") { //새로운 여행을 등록하는 경우
         //아무것도 하지 않는다
         $("#emptyPointsList").show();
@@ -402,7 +413,9 @@ function changeScreen_oneTrip(aTripName) {
     }
 }
 
+//초기화면으로 돌아가는 함수
 function changeScreen_mainPage() {
+    //화면 전환
     $("#oneTravelControl").hide();
     $("#pointListDiv").hide();
     $("#newPointControl").hide();
@@ -421,11 +434,14 @@ function changeScreen_mainPage() {
     clearMap();
 }
 
+//지도에 마커를 추가해주는 함수(인수들에 대한 정보를 토대로 원하는 마커를 지도에 추가해준다)
 function addMarker(markerLat, markerLng, markerColor, draggable, markerContent) {
+    //마커의 모습 결정하기
     var imageScr = "",
         imageSize = new kakao.maps.Size(40, 40),
         imageOption = {offset : new kakao.maps.Point(20, 50)};
 
+    //마커의 색깔에 따른 이미지 선택
     if(markerColor == "blue") {
         imageScr = "./source/marker_blue.png"
     }
@@ -439,6 +455,7 @@ function addMarker(markerLat, markerLng, markerColor, draggable, markerContent) 
         imageScr = "./source/marker_yellow.png"
     }
 
+    //마커의 이미지, 위치 정보
     var markerImage = new kakao.maps.MarkerImage(imageScr, imageSize, imageOption),
         markerPosition = new kakao.maps.LatLng(markerLat, markerLng);
 
@@ -447,26 +464,27 @@ function addMarker(markerLat, markerLng, markerColor, draggable, markerContent) 
         image : markerImage
     });
 
-    newPointMarker.setMap(screenMap);
-    newPointMarker.setDraggable(draggable);
+    newPointMarker.setMap(screenMap); //지도에 배치
+    newPointMarker.setDraggable(draggable); //배치 후 옮길 수 있는지에 대한 여부 결정
 
-    currentShownMarker.push(newPointMarker);
+    currentShownMarker.push(newPointMarker); //전역변수에 저장
 
+    //인포윈도우 추가(요청되는 경우)
     if(markerContent != "") {
         var iwContent = '<div style="padding:5px;">'+markerContent+'</div>',
-        iwPosition = new kakao.maps.LatLng(markerLat, markerLng); //인포윈도우 표시 위치입니다
+        iwPosition = new kakao.maps.LatLng(markerLat, markerLng); //인포윈도우 표시 위치
 
-        // 인포윈도우를 생성합니다
+        // 인포윈도우를 생성
         var infowindow = new kakao.maps.InfoWindow({
             position : iwPosition, 
             content : iwContent 
         });
         
-        // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-        infowindow.open(screenMap, newPointMarker);
 
-        currentShowInfoWindow.push(infowindow);
+        infowindow.open(screenMap, newPointMarker); //인포윈도우 지도에 배치
+
+        currentShowInfoWindow.push(infowindow); //전역변수에 저장
     }
 
-    return newPointMarker;
+    return newPointMarker; //생성된 마커 반환
 }
