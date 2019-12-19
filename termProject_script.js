@@ -4,6 +4,7 @@ var screenMap;
 var allTripList = null;
 var currentTravelingTrip = null;
 var currentShownMarker = [];
+var currentShowInfoWindow = [];
 
 
 var addedTrip_map_center = [];
@@ -274,7 +275,12 @@ function clearMap() {
         //모든 마커 삭제(지도에서부터)
         aMarker.setMap(null);
     });
+    $.each(currentShowInfoWindow, function(index, aInfoWindow) {
+        //모든 마커 삭제(지도에서부터)
+        aInfoWindow.close();
+    });
     currentShownMarker = []; //초기화
+    currentShowInfoWindow = []; //초기화
 }
 
 function showMap() {
@@ -456,7 +462,9 @@ function addMarker(markerLat, markerLng, markerColor, draggable, markerContent) 
         });
         
         // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-        infowindow.open(screenMap, newPointMarker); 
+        infowindow.open(screenMap, newPointMarker);
+
+        currentShowInfoWindow.push(infowindow);
     }
 
     return newPointMarker;
