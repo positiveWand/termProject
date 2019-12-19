@@ -64,6 +64,7 @@ $(document).ready(function() {
                 type: "post",
                 data: $("#oneTravelInfo").serialize()+"&mapLat="+screenMap.getCenter().getLat()+"&mapLng="+screenMap.getCenter().getLng()+"&mapLevel="+screenMap.getLevel()+"&newTrip="+newTrip
             }).done(function(data) {
+                console.log(data);
                 //입력 필드 초기화
                 $("#tripName").val("");
                 $("#tripDescription").val("");
