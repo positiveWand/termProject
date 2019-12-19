@@ -97,6 +97,7 @@ $(document).ready(function() {
                 type: "post",
                 data: $("#pointInfoForm").serialize()+"&tripName="+currentTravelingTrip["title"]+"&lat="+newPointPosition.getLat()+"&lng="+newPointPosition.getLng()
             }).done(function(data) {
+                console.log(data);
                 //입력 필드 초기화
                 $("#pointName").val("");
                 $("#pointDescription").val("");
