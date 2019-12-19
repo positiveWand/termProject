@@ -137,7 +137,7 @@ $(document).ready(function() {
 
         //지도 상 (초록색)마커 표시(움직일 수 있게)
         var aLatlng = screenMap.getCenter();
-        currentNewPointMarker =  addMarker(aLatlng.getLat(), aLatlng.getLng(), "red", true, "이걸 옮겨주세요!");
+        currentNewPointMarker =  addMarker(aLatlng.getLat(), aLatlng.getLng(), "red", true, "");
         
     });
 
@@ -444,18 +444,19 @@ function addMarker(markerLat, markerLng, markerColor, draggable, markerContent) 
     newPointMarker.setDraggable(draggable);
 
     currentShownMarker.push(newPointMarker);
+    if(markerContent == "") {
+        var iwContent = '<div style="padding:5px;">'+markerContent+'</div>',
+        iwPosition = new kakao.maps.LatLng(markerLat, markerLng); //인포윈도우 표시 위치입니다
 
-    var iwContent = '<div style="padding:5px;">'+markerContent+'</div>',
-    iwPosition = new kakao.maps.LatLng(markerLat, markerLng); //인포윈도우 표시 위치입니다
-
-    // 인포윈도우를 생성합니다
-    var infowindow = new kakao.maps.InfoWindow({
-        position : iwPosition, 
-        content : iwContent 
-    });
-    
-    // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-    infowindow.open(screenMap, newPointMarker); 
+        // 인포윈도우를 생성합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            position : iwPosition, 
+            content : iwContent 
+        });
+        
+        // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+        infowindow.open(screenMap, newPointMarker); 
+    }
 
     return newPointMarker;
 }
