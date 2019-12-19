@@ -40,7 +40,7 @@ array_push($allTripsSummaryArray, $tripData);
 file_put_contents($fileName, json_encode($allTripsSummaryArray));
 
 if($newTrip == "true") {
-    mkdir($tripName);
+    mkdir("./data/".$tripName);
 } 
 $fileName = "./data/".$tripName."/".$tripName."_summary.json";
 $tripSummaryJSON = file_get_contents($fileName);
