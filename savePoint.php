@@ -14,7 +14,7 @@ $pointData = array(
 );
 
 var_dump($pointData);
-$fileName = "./data/"+$tripName+"/"+$pointName+".json";
+$fileName = "./data/".$tripName."/".$pointName.".json";
 var_dump($fileName);
 file_put_contents($fileName, json_encode($pointData));
 
