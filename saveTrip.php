@@ -37,7 +37,7 @@ $tripData["mainPoints"] = $mainPointList;
 array_push($allTripsSummaryArray, $tripData);
 
 
-file_put_contents($fileName, json_encode($allTripsSummaryArray));
+file_put_contents($fileName, json_encode($allTripsSummaryArray, JSON_UNESCAPED_UNICODE));
 
 if($newTrip == "true") {
     mkdir("./data/".$tripName);
@@ -56,7 +56,7 @@ if($newTrip == "true") {
     $tripSummaryArray["pointsOrder"] = array();
 }
 
-file_put_contents($fileName, json_encode($tripSummaryArray));
+file_put_contents($fileName, json_encode($tripSummaryArray, JSON_UNESCAPED_UNICODE));
 
 
 
