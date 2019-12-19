@@ -33,9 +33,9 @@ for($i = 0; $i < count($allTripsSummaryArray); $i++) {
 }
 
 $tripData["mainPoints"] = $mainPointList;
-
+var_dump($allTripsSummaryArray);
 array_push($allTripsSummaryArray, $tripData);
-
+var_dump($allTripsSummaryArray);
 
 file_put_contents($fileName, json_encode($allTripsSummaryArray));
 
