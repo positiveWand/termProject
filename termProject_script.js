@@ -137,7 +137,7 @@ $(document).ready(function() {
 
         //지도 상 (초록색)마커 표시(움직일 수 있게)
         var aLatlng = screenMap.getCenter();
-        currentNewPointMarker =  addMarker(aLatlng.getLat(), aLatlng.getLng(), "red", true, "");
+        currentNewPointMarker =  addMarker(aLatlng.getLat(), aLatlng.getLng(), "red", true, "이걸 옮겨주세요!");
         
     });
 
@@ -444,6 +444,7 @@ function addMarker(markerLat, markerLng, markerColor, draggable, markerContent) 
     newPointMarker.setDraggable(draggable);
 
     currentShownMarker.push(newPointMarker);
+    
     if(markerContent != "") {
         var iwContent = '<div style="padding:5px;">'+markerContent+'</div>',
         iwPosition = new kakao.maps.LatLng(markerLat, markerLng); //인포윈도우 표시 위치입니다
