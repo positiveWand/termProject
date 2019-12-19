@@ -8,7 +8,8 @@ $summaryArray = json_decode($summaryJson);
 
 var_dump($summaryArray);
 
-
+var_dump($summaryArray["title"], $summaryArray["startDate"], $summaryArray["endDate"], $summaryArray["description"], $summaryArray["mapCenter"], $summaryArray["mapLevel"]);
+/*
 $packageArray = array(
     "title" => $summaryArray["title"],
     "startDate" => $summaryArray["startDate"],
@@ -19,7 +20,7 @@ $packageArray = array(
     "pointsList" => array()
 );
 var_dump($packageArray)
-/*
+
 for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
     $targetPoint = $summaryArray["pointsOrder"][$i];
     $targetFile = "./data/".$targetTripTitle."/".$targetPoint.".json";
