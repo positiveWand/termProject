@@ -33,7 +33,7 @@ $(document).ready(function() {
     //서버로부터 여행목록 가져오기
     //getTripList();
     //showTripList();
-    getAndShowTripList();
+    changeScreen_mainPage()
 
 
 
@@ -390,6 +390,7 @@ function changeScreen_mainPage() {
     //control버튼들 다시 활성화
     $("#addTripButton").attr("disabled", false);
 
+    getAndShowTripList();
     clearMap();
 }
 
