@@ -14,7 +14,7 @@ $pointData = array(
 );
 
 
-var_dump($pointData);
+var_dump($pointData, $tripName, $pointName, $pointDate);
 
 
 
