@@ -28,7 +28,7 @@ $tripSummaryArray = json_decode($tripSummaryJSON, true);
 array_push($tripSummaryArray["pointsOrder"], $pointName);
 var_dump($tripSummaryArray);
 
-file_put_contents($fileName, json_encode($tripSummaryArray, JSON_UNESCAPED_UNICODE))
+file_put_contents($fileName, json_encode($tripSummaryArray))
 
 
 
