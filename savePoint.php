@@ -30,6 +30,14 @@ var_dump($tripSummaryArray);
 
 file_put_contents($fileName, json_encode($tripSummaryArray));
 
+$fileName = "./data/all_trips_summary.json";
+$allTripsSummaryJSON = file_get_contents($fileName);
+$allTripsSummarArray = json_decode($allTripsSummaryJSON, true);
+
+array_push($allTripsSummarArray["mapPoints"], array("lat" => $pointLat, "lng" => $pointLng));
+
+file_put_contents($fileName, json_encode($allTripsSummarArray));
+
 
 
 echo "success";

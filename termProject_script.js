@@ -202,10 +202,11 @@ function readyMap() {
     });
 }
 function getAndShowTripList() {
+
     $.getJSON( "./data/all_trips_summary.json", function( data ) {
         allTripList = data;
         showTripList();
-        attachDynamicEventListeners()
+        attachDynamicEventListeners();
     });
 }
 
