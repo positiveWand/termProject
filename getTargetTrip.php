@@ -22,8 +22,8 @@ $packageArray = array(
     "mapLevel" => $summaryArray["mapLevel"],
     "pointsList" => array()
 );
-var_dump($packageArray)
-//var_dump($summaryArray["pointsOrder"][0]);
+var_dump($packageArray);
+var_dump($summaryArray["pointsOrder"][0]);
 /*
 for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
     $targetPoint = $summaryArray["pointsOrder"][$i];
