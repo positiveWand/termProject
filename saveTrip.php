@@ -28,7 +28,7 @@ $mainPointList = [];
 for($i = 0; $i < count($allTripsSummaryArray); $i++) {
     if($allTripsSummaryArray[$i]["title"] == $tripName) {
         $mainPointList = $allTripsSummaryArray[$i]["mainPoints"];
-        unset($allTripsSummaryArray[$i]);
+        array_splice($allTripsSummaryArray, $i, $i);
     }
 }
 
