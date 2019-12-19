@@ -215,8 +215,10 @@ function getAndShowTripList() {
 
 function showTripList() {
     $("#tripList").text("");
+    var noItems = true;
     var items = [];
     $.each( allTripList, function(index, aTrip) {
+        noItems = false;
         var anItem = "<li>";
         $.each( aTrip, function(key, val) {
             if(key == "title") {
@@ -234,6 +236,10 @@ function showTripList() {
 
         items.push(anItem);
     });
+
+    if(noItems) {
+        $("#emptyTripList").show();
+    }
 
     $("#tripList").append(items.join(""));
 }
@@ -318,6 +324,7 @@ function changeScreen_oneTrip(aTripName) {
     $("#selectPositionMessage").hide();
     $("#travelListControl").hide();
     $("#newPointControl").hide();
+    $("#emptyPointsList").hide();
 
     $("#controlTitle").text("~여행 중~");
     $("#oneTravelControl").show();
@@ -326,6 +333,7 @@ function changeScreen_oneTrip(aTripName) {
     $("#pointList").text("");
     if(aTripName == "") { //새로운 여행을 등록하는 경우
         //아무것도 하지 않는다
+        $("#emptyPointsList").show();
     }
     else { //기존의 여행을 조회하는 경우
         //기존의 정보들을 가져와 출력한다
@@ -352,8 +360,10 @@ function changeScreen_oneTrip(aTripName) {
 
 
             // 각 일정들에 대한 정보(마커, 내용)
+            var noItems = true;
             var items = [];
             $.each(currentTravelingTrip["pointsList"], function(index, aPoint) {
+                noItems = false;
                 var anItem = "<li>";
 
                 $.each(aPoint, function(key, value) {
@@ -375,6 +385,10 @@ function changeScreen_oneTrip(aTripName) {
                 items.push(anItem);
             });
 
+            if(noItems) {
+                $("#emptyPointsList").show();
+            }
+
             $("#pointList").append(items.join(""));
             attachDynamicEventListeners();
         });
@@ -386,6 +400,8 @@ function changeScreen_mainPage() {
     $("#pointListDiv").hide();
     $("#newPointControl").hide();
     $("#selectPositionMessage").hide();
+    $("#closeLookDiv").hide();
+    $("#emptyTripList").hide();
 
     $("#controlTitle").text("여행 List");
     $("#tripListDiv").show();
