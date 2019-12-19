@@ -7,11 +7,11 @@ var_dump($targetTripTitle);
 $targetFile = "./data/".$targetTripTitle."/".$targetTripTitle."_summary.json";
 $summaryJson = file_get_contents($targetFile);
 var_dump($summaryJson);
-$summaryArray = json_decode($summaryJson);
+$summaryArray = json_decode($summaryJson, true);
 
 var_dump($summaryArray);
-var_dump($summaryArray["title"]);
-/*
+
+
 $packageArray = array(
     "title" => $summaryArray["title"],
     "startDate" => $summaryArray["startDate"],
@@ -34,6 +34,6 @@ for($i = 0; $i < count($summaryArray["pointsOrder"]); $i++) {
 var_dump($packageArray);
 
 echo json_encode($packageArray);
-*/
+
 
 ?>
