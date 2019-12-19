@@ -370,6 +370,7 @@ function changeScreen_oneTrip(aTripName) {
             });
 
             $("#pointList").append(items.join(""));
+            attachDynamicEventListeners();
         });
     }
 }
